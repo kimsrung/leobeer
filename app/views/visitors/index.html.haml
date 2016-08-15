@@ -2,17 +2,20 @@
   .row
     .col-xs-12
       = image_tag asset_path("support_cambodia.png")  
+  %br
   .row#main_text
     .col-xs-12
-      %h1.text-center.text-uppercase Join us to reward 20,000,000 Riel
-      %h1.text-center.text-uppercase To Cambodian National Football Team
+      %p.text-center.text-uppercase Join us to reward 20,000,000 Riel
+      %p.text-center.text-uppercase To Cambodian National Football Team
 
+  %br
   .row
     .col-xs-8.col-xs-offset-4
       - value = "0001618"
       - value.split("").each do |c|
         .score.text-center
           %p= "#{c}"
+  %br
   %br
   .row#help-us
     .col-xs-12.text-center
@@ -48,21 +51,19 @@
             = image_tag asset_path("line.png")
           .col-md-6{style: "padding: 18px;text-align:center; color: white;"}
             %p Share on FB
-  %br
-  %br
-  %br
+            
   .row.blue_div{style: "margin: 40px; padding: 20px;"}
-    .col-md-6{style: "padding-top: 5px;"}
+    .col-md-4{style: "padding-top: 5px;"}
       %p.text-uppercase{style: "color:white;"} Play our ball kick up challenge
       %p.text-uppercase{style: "color:white;"} and stand a chance to win clear men 1 year usage
-    .col-md-6
+    .col-md-6.col-md-offset-2
       .box{style: "background: white;"}
         .row
-          .col-md-3{style: "padding: 10px; padding-left: 23px;"}
+          .col-md-2{style: "padding: 10px; padding-left: 23px;"}
             = image_tag asset_path("ball.png"), size: "40x40"
-          .col-md-2{style: "margin-left: -30px;"}
+          .col-md-2{style: "margin-left: -40px;"}
             = image_tag asset_path("line.png"), style: "overlfow: hidden;"
-          .col-md-6{style: "text-align:center; color: black; font-size:15px; padding-top: 20px;"}
-            %p Play Kickup Challenge
+          .col-md-4{style: "text-align:center; color: black; font-size:15px; padding-top: 20px;"}
+            = link_to "Play Kickup Challenge", "/kickup"
 
 
