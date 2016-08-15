@@ -1,13 +1,22 @@
--# navigation styled for Bootstrap 3.0
-%nav.navbar.navbar-default.navbar-fixed-top
+%nav.navbar.navbar-fixed-top.menu{:role => "navigation"}
   .container
+    / Brand and toggle get grouped for better mobile display
     .navbar-header
-      %button.navbar-toggle{"data-target" => ".navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Home', root_path, class: 'navbar-brand'
-    .collapse.navbar-collapse
+      %a.navbar-brand{:href => "#"}
+        %img{:alt => "", :src => asset_path("logo.png")}/
+    / Collect the nav links, forms, and other content for toggling
+    #menu.collapse.navbar-collapse{style: "margin-top: 40px;"}
       %ul.nav.navbar-nav
-        = render 'layouts/navigation_links'
+        %li
+          %a.text-uppercase{:href => "#"} Home
+        %li
+          %a.text-uppercase{:href => "#"} Support
+        %li
+          %a.text-uppercase{:href => "#"} Game Leaderboard
+    / /.navbar-collapse
+  / /.container

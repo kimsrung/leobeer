@@ -1,1 +1,58 @@
-@blue: #121b4d
+$blue: #121b4d;
+
+body{
+	background: url("<%= asset_path('bg.png')%>") top center no-repeat;
+}
+
+.menu {
+	a {
+		text-decoration: none;
+		color: white;
+		
+		font-size: 16px;
+	}
+	background-color: $blue;
+	height: 130px;
+}
+
+#main_content {
+	margin-top: 160px;
+
+	#main_text {
+		color: black;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.score{
+		float: left;
+		color: white;
+		font-size: 36px;
+		background: url("<%= asset_path('score.png')%>");
+		margin: 1px;
+		padding-top: 25px;
+		width: 64px;
+		height: 109px;
+		text-align: center;
+	}
+
+	#help-us {
+		color: white;
+		font-size: 14px;
+	}
+
+	.rectangle_box {
+		float:left;
+		display: inline;
+		overflow: none;
+		height: 60px;
+		background-color: $blue;
+	}
+
+	.blue_div{
+		background-color: $blue;
+	}
+
+}
+
+

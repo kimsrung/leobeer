@@ -1,0 +1,54 @@
+!!!
+%html
+  %head
+    %meta{:content => "width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0", :name => "viewport"}/
+    %title= content_for?(:title) ? yield(:title) : 'Unilever Demo'
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Unilever Demo'}"}
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+    
+  %body{:ondragstart => "return false;", :ondrop => "return false;"}
+    :javascript
+            $(document).ready(function(){
+                     var oMain = new CMain({
+                        // Normal mode parameters:
+                            gravity: 3.5,
+                            ballMass: 1,
+                            friction: 0.75,
+                            edgeFriction: 0.2,
+                            rotationSpeed: 1.25,
+                            horizKickForce: 50,
+                            vertKickForce: 50,
+                            restitutionKickForce: 0.25,
+                        // Challenge mode parameters:
+                            chGravity: 3.5,
+                            chBallMass: 1,
+                            chFriction: 0.75,
+                            chEdgeFriction: 0.2,
+                            chRotationSpeed: 1.25,
+                            chHorizKickForce: 50,
+                            chVertKickForce: 50,
+                            chRestitutionKickForce: 0.25,
+                            chGravityIncrease: 0.05    
+                     });
+
+                     $(oMain).on("game_start", function(evt) {
+                             //alert("game_start");
+                     });
+
+                     $(oMain).on("new_highscore", function(evt,iHighScore) {
+                             //alert("iHighScore: "+iHighScore );
+                     });
+
+                     $(oMain).on("restart", function(evt) {
+                             //alert("restart");
+                     });
+           });
+
+    %canvas#canvas.ani_hack{:height => "1024", :width => "768"}
+    / %header
+    /   = render 'layouts/navigation'
+    / %main{:role => "main"}
+    /   = render 'layouts/messages'
+    /   = yield
