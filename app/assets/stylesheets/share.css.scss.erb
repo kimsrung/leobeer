@@ -1,5 +1,36 @@
 $blue: #121b4d;
 
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+}
+
+.navbar-inverse{
+	background-color: $blue !important;
+}
+
+.navbar-fixed-top .nav {
+    padding: 30px 0;
+}
+
+.navbar-fixed-top .navbar-brand {
+    padding: 0 30px;
+}
+
+footer {
+    padding: 30px 0;
+}
+
+@media(min-width:768px) {
+    body {
+        padding-top: 100px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    }
+
+    .navbar-fixed-top .navbar-brand .nav {
+        padding: 30px 0;
+        height: 100px !important;
+    }
+}
+
 body{
 	background: url("<%= asset_path('bg.png')%>") top center no-repeat;
 }
@@ -7,12 +38,10 @@ body{
 .menu {
 	a {
 		text-decoration: none;
-		color: white;
-		
+		color: white;	
 		font-size: 16px;
 	}
 	background-color: $blue;
-	height: 130px;
 }
 
 #main_content {
