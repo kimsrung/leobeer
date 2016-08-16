@@ -110,7 +110,7 @@ embed {
 }
 /* line 3, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 body {
-  /*padding-top: 70px; /* Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+  padding-top: 50px;
 }
 
 /* line 7, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
@@ -118,55 +118,73 @@ body {
   background-color: #121b4d !important;
 }
 
-/* line 11, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 10, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+.navbar-nav {
+  margin-top: 0 !important;
+}
+
+/* line 13, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 .navbar-fixed-top .nav {
-  padding: 30px 0;
+  padding: 10px 0;
 }
 
-/* line 15, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
-.navbar-fixed-top .navbar-brand {
-  padding: 0 30px;
+/* line 17, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+.navbar-brand, .navbar-fixed-top, .navbar-header {
+  line-height: 85px;
+  height: 85px;
+  padding-top: 0;
 }
 
-/* line 19, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 23, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 footer {
   padding: 30px 0;
 }
 
 @media (min-width: 768px) {
-  /* line 24, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+  /* line 29, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
   body {
-    /*padding-top: 100px;  Required padding for .navbar-fixed-top. Change if height of navigation changes. */
+    padding-top: 50px;
   }
 
-  /* line 28, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
-  .navbar-fixed-top .navbar-brand .nav {
-    padding: 30px 0;
+  /* line 33, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+  .navbar-fixed-top, .navbar-brand .navbar-nav {
+    padding: 0px 0px;
+  }
+
+  /* line 37, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+  .navbar-fixed-top, .navbar-brand, .navbar-header {
+    line-height: 85px;
+    height: 85px;
+    padding-top: 0;
   }
 }
-/* line 33, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 44, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 body {
   background: url("/assets/bg-36be02e186de49b3409193adb683ca96e0f93369ad13e658bb712c596bdf00d8.png") top center no-repeat;
 }
 
-/* line 37, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 48, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 .menu {
   background-color: #121b4d;
 }
-/* line 38, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 49, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 .menu a {
   text-decoration: none;
   color: white;
   font-size: 16px;
 }
 
-/* line 49, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 57, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+#main_content {
+  margin-top: 100px;
+}
+/* line 60, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 #main_content #main_text {
   color: black;
-  font-size: 27px;
+  font-size: 15px;
   font-weight: bold;
 }
-/* line 55, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 66, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 #main_content .score {
   float: left;
   color: white;
@@ -174,24 +192,22 @@ body {
   background: url("/assets/score-d8b011a3ce87c80a54d485eb8e49c8ab752182cb116f3e1e1ed2430fdc109bd0.png");
   margin: 1px;
   padding-top: 25px;
-  width: 64px;
-  height: 109px;
   text-align: center;
 }
-/* line 67, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 76, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 #main_content #help-us {
   color: white;
-  font-size: 14px;
+  font-size: 13px;
 }
-/* line 72, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
-#main_content .rectangle_box {
+/* line 81, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+#main_content .support_box {
   float: left;
   display: inline;
   overflow: none;
   height: 60px;
   background-color: #121b4d;
 }
-/* line 80, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
+/* line 89, /Users/sovanlandypheng/rails_projects/clearmen/app/assets/stylesheets/share.css.scss.erb */
 #main_content .blue_div {
   background-color: #121b4d;
 }

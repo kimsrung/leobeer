@@ -5,6 +5,8 @@ class VisitorsController < ApplicationController
 	end
 
 	def support
-		
+		@stamp = Stamp.new
 	end
+
+	
 end

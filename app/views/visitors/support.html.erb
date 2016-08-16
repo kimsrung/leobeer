@@ -1,0 +1,11 @@
+<br/>
+<br/>
+<%= form_for @stamp do |f| %>
+  <div class="field">
+    <%= f.label :image, "Upload Image" %>
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
