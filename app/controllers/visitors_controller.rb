@@ -1,7 +1,7 @@
 class VisitorsController < ApplicationController
 
 	def kickup
-		render :layout => false    
+		#render :layout => false    
 	end
 
 	def support

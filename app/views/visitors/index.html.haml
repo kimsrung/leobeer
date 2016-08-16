@@ -6,15 +6,16 @@
   .row#main_text
     .col-xs-12
       %p.text-center.text-uppercase Join us to reward 20,000,000 Riel
-      %p.text-center.text-uppercase To Cambodian National Football Team
+      %p.text-center.text-uppercase To Cambodia National Football Team
 
   %br
   .row
-    .col-xs-8.col-xs-offset-4
-      - value = "0001618"
-      - value.split("").each do |c|
-        .score.text-center
-          %p= "#{c}"
+    - value = "0001618"
+    %table.col-md-12{style: "width: 100%;"}
+      %tr
+        - value.split("").each do |c|
+          %td.score{style: "width: 13.5%; padding:10px;"}
+            %p.text-center= "#{c}"
   %br
   %br
   .row#help-us
@@ -31,39 +32,30 @@
       %p Or any below action
 
   .row
-    .col-xs-8.col-xs-offset-4
-      .rectangle_box
-        .row
-          .col-xs-3{style: "padding: 10px; padding-left: 23px;"}
-            = image_tag asset_path("profile.png"), size: "50x50"
-          .col-xs-2{style: "margin-left: -30px;"}
-            = image_tag asset_path("line.png")
-          .col-xs-6{style: "padding: 18px;text-align:center; color: white;"}
-            %p Show your support
+    .col-md-12
+      %a{href: "/kickup", style: "text-decoration: none;"}
+        .div{style: "background-color: #121b4d;"}
+          = image_tag asset_path("profile.png"), size: "50x50", style:"display: inline; margin: 10px;"
+          = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
+          %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 20px; margin-left:20px;"} Show your support
   %br
-  .row#action_item
-    .col-md-8.col-md-offset-4
-      .rectangle_box
-        .row
-          .col-md-3{style: "padding: 10px; padding-left: 23px;"}
-            = image_tag asset_path("fb.png"), size: "22x46"
-          .col-md-2{style: "margin-left: -30px;"}
-            = image_tag asset_path("line.png")
-          .col-md-6{style: "padding: 18px;text-align:center; color: white;"}
-            %p Share on FB
-            
-  .row.blue_div{style: "margin: 40px; padding: 20px;"}
-    .col-md-4{style: "padding-top: 5px;"}
-      %p.text-uppercase{style: "color:white;"} Play our ball kick up challenge
-      %p.text-uppercase{style: "color:white;"} and stand a chance to win clear men 1 year usage
-    .col-md-6.col-md-offset-2
-      .box{style: "background: white;"}
-        .row
-          .col-md-2{style: "padding: 10px; padding-left: 23px;"}
-            = image_tag asset_path("ball.png"), size: "40x40"
-          .col-md-2{style: "margin-left: -40px;"}
-            = image_tag asset_path("line.png"), style: "overlfow: hidden;"
-          .col-md-4{style: "text-align:center; color: black; font-size:15px; padding-top: 20px;"}
-            = link_to "Play Kickup Challenge", "/kickup"
+  .row
+    .col-md-12
+      %a{href: "/kickup", style: "text-decoration: none;"}
+        .div{style: "background-color: #121b4d;"}
+          = image_tag asset_path("fb.png"), size: "26x50", style:"display: inline; margin: 10px; margin-right:33px;"
+          = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
+          %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 20px; margin-left:20px;"} Share on Facebook
+  
+  %br
+  .row{style: "background-color: rgba(18, 27, 78, 0.4); padding: 10px;"}
+    .col-md-6{style: "padding-top: 5px;"}
+      %p.text-uppercase{style: "color:white;"} Play our ball kick up challenge and stand a chance to win clear men 1 year usage
+    .col-md-6
+      %a{href: "/kickup", style: "text-decoration: none;"}
+        .div{style: "background: white;height: 50px;"}    
+          = image_tag asset_path("ball.png"), size: "30x30", style:"display: inline-block; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;"
+          = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
+          %p{style:"display: inline-block; margin-left: 20px; margin-top:15px;color: black; text-align:center;"} Play Kickup Challenge
 
 
