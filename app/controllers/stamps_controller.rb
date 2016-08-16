@@ -11,7 +11,7 @@ class StampsController < ApplicationController
   end
 
   def download
-  	send_file params[:thumb_image]
+  	send_file Rails.public_path.to_s + params[:thumb_image]
   end
 
   private

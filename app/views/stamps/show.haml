@@ -1,2 +1,3 @@
 %p Download your image
 = image_tag @thumb_image.to_s
+= link_to "download", :controller => "stamps", :action => "download", :thumb_image => @thumb_image, via: :get
