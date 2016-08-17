@@ -9,6 +9,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'rmagick'
 gem 'carrierwave'
+gem 'social-share-button', '~> 0.1.6'
 
 group :development, :test do
   gem 'byebug'

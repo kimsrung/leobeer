@@ -7,7 +7,7 @@
       %p{style: "font-size: 12px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
 
   .row{}
-    .col-md-6.col-md-offset-3
+    .col-md-6.col-md-offset-3{id: "my_image"}
       - if @thumb_image.present?
         = image_tag @thumb_image.to_s
       - else
@@ -45,7 +45,7 @@
     $("#file").hide();
     
 
-    $("#blank_picture, #label").click(function(){
+    $("#blank_picture, #label, #my_image").click(function(){
       $("#file").click();
     })
 
