@@ -5,6 +5,10 @@ class VisitorsController < ApplicationController
 	end
 
 	def support
+		
+	end
+
+	def upload
 		@stamp = Stamp.new
 	end
 

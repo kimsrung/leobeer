@@ -7,11 +7,18 @@ class StampsController < ApplicationController
   end
 
   def show
+    @stamp = Stamp.new
   	@thumb_image = params[:thumb_image]
   end
 
   def download
-  	send_file Rails.public_path.to_s + params[:thumb_image]
+    if params[:thumb_image].present?
+  	 send_file Rails.public_path.to_s + params[:thumb_image]
+    else
+      @stamp = Stamp.new
+      @stamp.id = 1
+      redirect_to stamp_path(@stamp)
+    end
   end
 
   private

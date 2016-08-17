@@ -1,61 +1,77 @@
-#main_content
-  .row
-    .col-md-12
-      = image_tag asset_path("support_cambodia.png")  
-  %br
-  .row#main_text
-    .col-md-12
-      %p.text-center.text-uppercase Join us to reward 20,000,000 Riel
-      %p.text-center.text-uppercase To Cambodia National Football Team
+.container{style: "background: url('#{asset_path 'bg.png'}') center no-repeat; margin-left: 0px !important; margin-right: 0px !important; padding-bottom: 150px; padding-right:0px !important;"}
+  #main_content
+    .row
+      .col-md-12
+        = image_tag asset_path("support_cambodia.png")  
+    %br
+    .row{style: "color: black; font-size: 14px; font-weight:bold;"}
+      .col-md-12.text-center.text-uppercase
+        %p Join us to reward 20,000,000 Riel
+        %p To Cambodia National Football Team
 
-  %br
-  .row
-    - value = "0001618"
-    %table.col-md-12{style: "width: 100%;"}
-      %tr
-        - value.split("").each do |c|
-          %td.score{style: "width: 13.5%; padding:10px;"}
-            %p.text-center= "#{c}"
-  %br
-  %br
-  .row#help-us
-    .col-md-12.text-center
-      %p Help us reach ONE MILLION to reward 20,000,000 Riel 
-      %p to the Cambodia National Football Team
-      %br
-      %p.text-uppercase Here is how:
-      %p Buy 1 CLEAR Bottle 480ml get 15 Reward
-      %p Buy 1 CLEAR Bottle 340ml get 10 Reward
-      %p Buy 1 CLEAR Bottle 80ml get 5 Reward
-      %p Buy 1 CLEAR Sachet 480ml get 1 Reward
-      %br
-      %p Or any below action
+    %br
+    .row
+      - value = "0001618"
+      %table.col-md-12{style: "width: 100%;"}
+        %tr
+          - value.split("").each do |c|
+            %td.score{style: "width: 13.5%; padding:10px;"}
+              %p.text-center= "#{c}"
+    %br
+    %br
+    .row#help-us
+      .col-md-12.text-center
+        %p Help us reach ONE MILLION to reward 20,000,000 Riel 
+        %p to the Cambodia National Football Team
+        %br
+        %p.text-uppercase Here is how:
+        %p Buy 1 CLEAR Bottle 480ml get 15 Reward
+        %p Buy 1 CLEAR Bottle 340ml get 10 Reward
+        %p Buy 1 CLEAR Bottle 80ml get 5 Reward
+        %p Buy 1 CLEAR Sachet 480ml get 1 Reward
+        %br
+        %p Or any below action
 
-  .row
-    .col-md-12
-      %a{href: "/kickup", style: "text-decoration: none;"}
-        .div{style: "background-color: #121b4d;"}
-          = image_tag asset_path("profile.png"), size: "50x50", style:"display: inline; margin: 10px;"
-          = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
-          %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 20px; margin-left:20px;"} Show your support
-  %br
-  .row
-    .col-md-12
-      %a{href: "/kickup", style: "text-decoration: none;"}
-        .div{style: "background-color: #121b4d;"}
-          = image_tag asset_path("fb.png"), size: "26x50", style:"display: inline; margin: 10px; margin-right:33px;"
-          = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
-          %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 20px; margin-left:20px;"} Share on Facebook
-  
-  %br
-  .row{style: "background-color: rgba(18, 27, 78, 0.4); padding: 10px;"}
-    .col-md-6{style: "padding-top: 5px;"}
-      %p.text-uppercase{style: "color:white;"} Play our ball kick up challenge and stand a chance to win clear men 1 year usage
-    .col-md-6
-      %a{href: "/kickup", style: "text-decoration: none;"}
-        .div{style: "background: white;height: 50px;"}    
-          = image_tag asset_path("ball.png"), size: "30x30", style:"display: inline-block; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;"
-          = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
-          %p{style:"display: inline-block; margin-left: 20px; margin-top:15px;color: black; text-align:center;"} Play Kickup Challenge
+    .row
+      .col-md-12
+        %a{href: "/kickup", style: "text-decoration: none;"}
+          .div{style: "background-color: #121b4d;"}
+            = image_tag asset_path("profile.png"), size: "50x50", style:"display: inline; margin: 10px;"
+            = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
+            %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 20px; margin-left:20px;"} Show your support
+    %br
+    .row
+      .col-md-12
+        %a{href: "/kickup", style: "text-decoration: none;"}
+          .div{style: "background-color: #121b4d;"}
+            = image_tag asset_path("fb.png"), size: "26x50", style:"display: inline; margin: 10px; margin-right:33px;"
+            = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
+            %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 20px; margin-left:20px;"} Share on Facebook
+    
+    %br
+    .row{style: "background-color: rgba(18, 27, 78, 0.4); padding: 10px;"}
+      .col-md-6{style: "padding-top: 5px;"}
+        %p.text-uppercase{style: "color:white;"} Play our ball kick up challenge and stand a chance to win clear men 1 year usage
+      .col-md-6
+        %a{href: "/kickup", style: "text-decoration: none;"}
+          .div{style: "background: white;height: 50px;"}    
+            = image_tag asset_path("ball.png"), size: "30x30", style:"display: inline-block; margin-bottom: 15px; margin-left: 10px; margin-right: 10px;"
+            = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
+            %p{style:"display: inline-block; margin-left: 20px; margin-top:15px;color: black; text-align:center;"} Play Kickup Challenge
+
+    %br
+    %br        
+    .row
+      .col-md-1
+      .col-md-10
+        %iframe{width: "100%", height: "600", src: "https://www.youtube.com/embed/p-pww2lDFGQ"}
+      .col-md-1
+
+    %br
+    %br
+    %br
+    %br   
+
+    = render 'layouts/footer'
 
 

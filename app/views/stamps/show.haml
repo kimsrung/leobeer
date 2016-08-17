@@ -1,3 +1,54 @@
-%p Download your image
-= image_tag @thumb_image.to_s
-= link_to "download", :controller => "stamps", :action => "download", :thumb_image => @thumb_image, via: :get
+.container.grad1{style: "background-color: black;margin-left: 0px !important; margin-right: 0px !important; padding-bottom: 150px; padding-right:0px !important;"}
+  .row{style: "margin-top: 100px;"}
+    .col-md-12.text-center
+      .text-uppercase{style: "font-size: 16px; color: white; font-weight: bold;"} Change your profile picture
+  .row{style: "margin-top: 20px;"}
+    .col-md-12.text-center
+      %p{style: "font-size: 12px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
+
+  .row{}
+    .col-md-6.col-md-offset-3
+      - if @thumb_image.present?
+        = image_tag @thumb_image.to_s
+      - else
+        = image_tag "BlueFilterAndLogo.png"
+
+  = form_for @stamp do |f|
+    .field.row
+      .col-md-12.text-center
+        = f.label :image, "Change picture", style: "display: inline-block; color: white;", id: "label"
+        = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
+        = f.file_field :image, id: "file"
+      %br
+    .actions.text-center
+      = f.submit "SUBMIT", class: "btn btn-lg", id: "submit", style: "width: 200px; height: 50px; background-color: #121b4d; color: white;"
+
+  %br
+  .row
+    .col-md-12.text-center{style: "color:white; font-size: 14px;"}
+      %p Please download to your computer or mobile then set as Profile Picture
+  %br
+    .col-md-12.text-center{style: "color:white; font-size: 14px;"}
+      %p #CamNatFootballTeam
+  %br
+  %br
+  .row
+    .col-md-12.text-center
+      .btn.btn-lg{style: "width: 200px; height: 50px; background-color: #121b4d"}
+        = link_to "DOWNLOAD", :controller => "stamps", :action => "download", :thumb_image => @thumb_image, via: :get
+
+  %br
+  %br
+  = render 'layouts/footer'
+
+  :javascript
+    $("#file").hide();
+    
+
+    $("#blank_picture, #label").click(function(){
+      $("#file").click();
+    })
+
+    $("#file").change(function() {
+      $("#submit").submit();
+    });

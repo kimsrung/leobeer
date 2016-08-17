@@ -2,6 +2,7 @@ $blue: #121b4d;
 
 body {
     padding-top: 50px; 
+    font-family: Arial !important;
 }
 
 .navbar-inverse{
@@ -39,10 +40,6 @@ footer {
     	height: 85px;
     	padding-top: 0;
 		}
-}
-
-body{
-	background: url("<%= asset_path('bg.png')%>") top center no-repeat;
 }
 
 .menu {
@@ -91,5 +88,24 @@ body{
 	}
 
 }
+
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+.grad1 {
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+1,020000+50,020101+100&0.77+0,1+100 */
+background: -moz-radial-gradient(center, ellipse cover, rgba(30,87,153,0.77) 0%, rgba(30,87,153,0.77) 1%, rgba(2,0,0,0.88) 50%, rgba(2,1,1,1) 100%); /* FF3.6-15 */
+background: -webkit-radial-gradient(center, ellipse cover, rgba(30,87,153,0.77) 0%,rgba(30,87,153,0.77) 1%,rgba(2,0,0,0.88) 50%,rgba(2,1,1,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: radial-gradient(ellipse at center, rgba(30,87,153,0.77) 0%,rgba(30,87,153,0.77) 1%,rgba(2,0,0,0.88) 50%,rgba(2,1,1,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c41e5799', endColorstr='#020101',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+// Needs latest Compass, add '@import "compass"' to your scss
+// Permalink - use to edit and share this gradient:
+// http://colorzilla.com/gradient-editor/#1e5799+0,020101+100
 
 

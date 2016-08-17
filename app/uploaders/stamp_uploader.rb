@@ -23,17 +23,17 @@ class StampUploader < CarrierWave::Uploader::Base
   def stamp
     manipulate! format: "png" do |source|
       
-      overlay1_path = Rails.public_path.to_s + ActionController::Base.helpers.asset_path("support_cambodia.png").to_s
-      overlay1 = Magick::Image.read(overlay1_path).first.resize_to_fill(274, 100)
+      overlay1_path = Rails.public_path.to_s + ActionController::Base.helpers.asset_path("BlueFilterAndLogo.png").to_s
+      overlay1 = Magick::Image.read(overlay1_path).first
       
-      overlay2_path = Rails.public_path.to_s + ActionController::Base.helpers.asset_path("withclear.png").to_s
-      overlay2 = Magick::Image.read(overlay2_path).first
+      # overlay2_path = Rails.public_path.to_s + ActionController::Base.helpers.asset_path("withclear.png").to_s
+      # overlay2 = Magick::Image.read(overlay2_path).first
 
       
       
       source = source.resize_to_fill(500, 500)
-      source.composite!(overlay1, 0, 400, Magick::OverCompositeOp)
-      source.composite!(overlay2, 350, 450, Magick::OverCompositeOp)
+      source.composite!(overlay1, 0, 0, Magick::OverCompositeOp)
+      # source.composite!(overlay2, 350, 450, Magick::OverCompositeOp)
     end
   end
 
