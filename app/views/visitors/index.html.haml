@@ -1,5 +1,5 @@
-.container{style: "background: url('#{asset_path 'bg.png'}') center no-repeat; margin-left: 0px !important; margin-right: 0px !important; padding-bottom: 150px; padding-right:0px !important;"}
-  #main_content
+.div{style: "background: url('#{asset_path 'bg.png'}'); background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 0 0 !important;"}
+  #main_content.container
     .row
       .col-md-12
         = image_tag asset_path("support_cambodia.png")  
@@ -15,7 +15,7 @@
       %table.col-md-12{style: "width: 100%;"}
         %tr
           - value.split("").each do |c|
-            %td.score{style: "width: 13.5%; padding:10px;"}
+            %td.score{style: "width: 13.6%; padding:10px;"}
               %p.text-center= "#{c}"
     %br
     %br
