@@ -1,55 +1,86 @@
-.container.grad1{style: "background-color: black;margin-left: 0px !important; margin-right: 0px !important; padding-bottom: 150px; padding-right:0px !important;"}
-  .row{style: "margin-top: 100px;"}
-    .col-md-12.text-center
-      .text-uppercase{style: "font-size: 16px; color: white; font-weight: bold;"} Change your profile picture
-  .row{style: "margin-top: 20px;"}
-    .col-md-12.text-center
-      %p{style: "font-size: 12px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
+:javascript
+  $(document).ready(function(){
 
-  .row{}
-    .col-md-6.col-md-offset-3{id: "my_image"}
-      - if @thumb_image.present?
-        = image_tag @thumb_image.to_s
-      - else
-        = image_tag "BlueFilterAndLogo.png"
+        $("#file").hide();
+        
 
-  = form_for @stamp do |f|
-    .field.row
+        $("#blank_picture, #label, #my_image").click(function(){
+          $("#file").click();
+        });
+
+
+        $('#file').change(function(e) {
+            var file = e.target.files[0],
+                imageType = /image.*/;
+            
+            if (!file.type.match(imageType))
+                return;
+            
+            var reader = new FileReader();
+            reader.onload = fileOnload;
+            reader.readAsDataURL(file);
+            
+        });
+        
+        function fileOnload(e) {
+            var $img = $('<img>', { src: e.target.result });
+            var canvas = $('#canvas')[0];
+            var context = canvas.getContext('2d');
+
+            $img.load(function() {
+                context.drawImage(this, 0, 0, 500, 500);
+            });
+
+            $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
+
+            $filter.load(function() {
+                context.drawImage(this, 0, 0, 500, 500);
+            });
+        }
+  });
+.div{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
+  #main_content.container
+    .row
       .col-md-12.text-center
-        = f.label :image, "Change picture", style: "display: inline-block; color: white;", id: "label"
-        = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
-        = f.file_field :image, id: "file"
-      %br
-      %br
-    .actions.text-center
-      = f.submit "SUBMIT", class: "btn btn-lg", id: "submit", style: "width: 200px; height: 50px; background-color: #121b4d; color: white;"
+        .text-uppercase{style: "font-size: 16px; color: white; font-weight: bold;"} Change your profile picture
+    .row{style: "margin-top: 20px;"}
+      .col-md-12.text-center
+        %p{style: "font-size: 12px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
 
-  %br
-  .row
-    .col-md-12.text-center{style: "color:white; font-size: 14px;"}
-      %p Please download to your computer or mobile then set as Profile Picture
-  %br
-    .col-md-12.text-center{style: "color:white; font-size: 14px;"}
-      %p #CamNatFootballTeam
-  %br
-  %br
-  .row
-    .col-md-12.text-center
-      .btn.btn-lg{style: "width: 200px; height: 50px; background-color: #121b4d"}
-        = link_to "DOWNLOAD", :controller => "stamps", :action => "download", :thumb_image => @thumb_image, via: :get
+    .row{}
+      .col-md-6.col-md-offset-3{id: "my_image"}
+        - if @thumb_image.present?
+          = image_tag @thumb_image.to_s
+        - else
+          %canvas#canvas{:height => "500", :width => "500"}
 
-  %br
-  %br
-  = render 'layouts/footer'
+    = form_for @stamp do |f|
+      .field.row
+        .col-md-12.text-center
+          = f.label :image, "Change picture", style: "display: inline-block; color: white;", id: "label"
+          = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
+          = image_tag "", id: "blah", width: 200, height:200
+          = f.file_field :image, id: "file"
+        %br
+        %br
+      .actions.text-center
+        = f.submit "Download", class: "btn btn-lg", id: "submit", style: "width: 200px; height: 50px; background-color: #121b4d; color: white;"
 
-  :javascript
-    $("#file").hide();
-    
+    %br
+    .row
+      .col-md-12.text-center{style: "color:white; font-size: 14px;"}
+        %p Please download to your computer or mobile then set as Profile Picture
+    %br
+      .col-md-12.text-center{style: "color:white; font-size: 14px;"}
+        %p #CamNatFootballTeam
+    %br
+    %br
+    .row
+      .col-md-12.text-center
+        .btn.btn-lg{style: "width: 200px; height: 50px; background-color: #121b4d"}
+          = link_to "DOWNLOAD", :controller => "stamps", :action => "download", :thumb_image => @thumb_image, via: :get
 
-    $("#blank_picture, #label, #my_image").click(function(){
-      $("#file").click();
-    })
+    %br
+    %br
+    = render 'layouts/footer'
 
-    $("#file").change(function() {
-      $("#submit").submit();
-    });
