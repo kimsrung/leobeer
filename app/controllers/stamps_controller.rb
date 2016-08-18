@@ -8,7 +8,8 @@ class StampsController < ApplicationController
 
   def show
     @stamp = Stamp.new
-    @image_url = JSON.parse(RestClient.get params[:image_url])["picture"]["data"]["url"]
+    @image_url = User.find_by(uid: params[:id]).image_url
+    binding.pry
   end
 
   def download
