@@ -9,7 +9,7 @@ class StampsController < ApplicationController
   def show
     @stamp = Stamp.new
     @image_url = User.find_by(uid: params[:id]).image_url
-    binding.pry
+    
   end
 
   def download
