@@ -1,12 +1,34 @@
 :javascript
   $(document).ready(function(){
 
+
         $("#file").hide();
         $("#my_canvas").hide();
 
         $("#blank_picture, #label, #my_image").click(function(){
           $("#file").click();
         });
+
+        var image_url = '#{@image_url}';
+        if( image_url){
+          console.log("image_url present");
+          console.log(image_url);
+          $("#my_canvas").show();
+          var canvas = $('#canvas')[0];
+          var ctx = canvas.getContext('2d');
+          $img1 = $('<img>', { src: image_url});
+          $img1.load(function() {
+              ctx.drawImage(this, 0, 0, 400, 400);
+
+              $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
+
+              $img2.load(function() {
+                  ctx.drawImage(this, 0, 0, 400, 400);
+              });
+          });
+
+          
+        }
 
         var orientation = 1;
 
@@ -85,15 +107,17 @@
               
               ctx.drawImage(this, 0, 0, 400, 400);
               ctx.restore();  
+
+              $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
+
+              $filter.load(function() {
+                  ctx.drawImage(this, 0, 0, 400, 400);
+              });
               orientation = 1
             });
 
 
-            $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
-
-            $filter.load(function() {
-                ctx.drawImage(this, 0, 0, 400, 400);
-            });
+            
 
         }
 
@@ -111,7 +135,8 @@
         };
         document.getElementById("dl").addEventListener('click', dlCanvas, false);
   });
-.div{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 20px 0 !important;  overflow: visible;"}
+
+#sth{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 20px 0 !important;  overflow: visible;"}
   
   #main_content.container
     .row
@@ -121,9 +146,10 @@
       .col-md-12.text-center
         %p{style: "font-size: 14px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
 
-    .row{style: "margin-top: 20px;"}
-      .col-md-6.col-md-offset-3{id: "my_image"}
-        = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
+    - if !@image_url.present?    
+      .row{style: "margin-top: 20px;"}
+        .col-md-6.col-md-offset-3{id: "my_image"}
+          = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
     .row{id: "my_canvas"}
       .col-md-6.col-md-offset-3
         %canvas#canvas{:height => "400", :width => "400", style: "position: initial;"}
@@ -132,6 +158,7 @@
       .field.row
         .col-md-12.text-center
           = f.label :image, "Change picture", style: "display: inline-block; color: white;", id: "label"
+          
           = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
           %p{style: "color: white; font-size:10px;"} (Please allows up to 5 seconds for image to be processed properly)
           = image_tag "", id: "blah", width: 200, height:200

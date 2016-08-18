@@ -116,6 +116,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    netrc (0.7.9)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
@@ -179,6 +180,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.17.0)
     rake (11.2.2)
+    rest_client (1.8.3)
+      netrc (~> 0.7.7)
     rmagick (2.16.0)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
@@ -248,6 +251,7 @@ DEPENDENCIES
   rails (= 4.2.4)
   rails_12factor
   rails_layout
+  rest_client
   rmagick
   sass-rails (~> 5.0)
   simple_form
