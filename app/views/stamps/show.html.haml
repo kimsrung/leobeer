@@ -37,6 +37,7 @@
             var $img = $('<img>', { src: e.target.result });
             var canvas = $('#canvas')[0];
             var ctx = canvas.getContext('2d');
+            ctx.save();
 
             $img.load(function() {
                 
@@ -64,11 +65,9 @@
                   case 6:
                       // 90° rotate right
                       console.log("enter here 6");
-                      ctx.save();
+                      
                       ctx.rotate(0.5 * Math.PI);
                       ctx.translate(0, -canvas.height);
-                      ctx.drawImage(this, 0, 0, 400, 400);
-                      ctx.restore();
                       break;
                   case 7:
                       // horizontal flip + 90 rotate right
@@ -83,8 +82,10 @@
                       break;
               }
               
+              ctx.drawImage(this, 0, 0, 400, 400);
+              ctx.restore();  
             });
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
+
 
             $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
 
