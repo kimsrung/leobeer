@@ -2,11 +2,11 @@
 %html
   %head
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
-    %meta{:content => "clearantidandruffcambodia.com", :property => "og:url"}/
+    %meta{:content => "http://www.clearantidandruffcambodia.com", :property => "og:url"}/
     %meta{:content => "website", :property => "og:type"}/
     %meta{:content => "Clear Anti Dandruff Cambodia", :property => "og:title"}/
     %meta{:content => "Best Anti-dandruff Shampoo. Scalp Care Specialists. Clear Paris Institute", :property => "og:description"}/
-    %meta{:content => "http://clear-cambodia.herokuapp.com/assets/support_cambodia-5bbcc24e68f28f4414b7fed22f535f603324a0ffa7d2544a528df007178a65a8.png", :property => "og:image"}/
+    %meta{:content => asset_path("support_cambodia.png"), :property => "og:image"}/
     %title= content_for?(:title) ? yield(:title) : 'Clear Anti Dandruff Cambodia'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Clearmen'}"}
     = stylesheet_link_tag 'application', media: 'all'
