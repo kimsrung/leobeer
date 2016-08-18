@@ -29,4 +29,5 @@
 //= require settings
 //= require sprite_lib
 //= require CMain
+//= load-image.all.min
 //= require_tree .

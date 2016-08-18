@@ -8,6 +8,7 @@
           $("#file").click();
         });
 
+        var orientation = 1;
 
         $('#file').change(function(e) {
             $("#sample").hide();
@@ -18,44 +19,77 @@
             if (!file.type.match(imageType))
                 return;
             
+            loadImage.parseMetaData(file, function (data) {
+              if (data.exif) {
+                console.log('orientation');
+                orientation = data.exif.get('Orientation');
+              }
+            })
+
+
             var reader = new FileReader();
             reader.onload = fileOnload;
-            reader.onloadend = function () {
-              console.log(reader.result);
-            }
-            reader.readAsBinaryString(file);
+            reader.readAsDataURL(file);
             
         });
         
         function fileOnload(e) {
             var $img = $('<img>', { src: e.target.result });
             var canvas = $('#canvas')[0];
-            var context = canvas.getContext('2d');
+            var ctx = canvas.getContext('2d');
 
             $img.load(function() {
-                context.drawImage(this, 0, 0, 400, 400);
-
-                var exif = EXIF.readFromBinaryFile(new BinaryFile(this.result));
-
-                switch(exif.Orientation){
-
-                   case 8:
-                       context.rotate(90*Math.PI/180);
-                       break;
-                   case 3:
-                       context.rotate(180*Math.PI/180);
-                       break;
-                   case 6:
-                       context.rotate(-90*Math.PI/180);
-                       break;
-                }
+                
+                switch(orientation){
+                  case 2:
+                      // horizontal flip
+                      ctx.translate(canvas.width, 0);
+                      ctx.scale(-1, 1);
+                      break;
+                  case 3:
+                      // 180° rotate left
+                      ctx.translate(canvas.width, canvas.height);
+                      ctx.rotate(Math.PI);
+                      break;
+                  case 4:
+                      // vertical flip
+                      ctx.translate(0, canvas.height);
+                      ctx.scale(1, -1);
+                      break;
+                  case 5:
+                      // vertical flip + 90 rotate right
+                      ctx.rotate(0.5 * Math.PI);
+                      ctx.scale(1, -1);
+                      break;
+                  case 6:
+                      // 90° rotate right
+                      console.log("enter here 6");
+                      ctx.save();
+                      ctx.rotate(0.5 * Math.PI);
+                      ctx.translate(0, -canvas.height);
+                      ctx.drawImage(this, 0, 0, 400, 400);
+                      ctx.restore();
+                      break;
+                  case 7:
+                      // horizontal flip + 90 rotate right
+                      ctx.rotate(0.5 * Math.PI);
+                      ctx.translate(canvas.width, -canvas.height);
+                      ctx.scale(-1, 1);
+                      break;
+                  case 8:
+                      // 90° rotate left
+                      ctx.rotate(-0.5 * Math.PI);
+                      ctx.translate(-canvas.width, 0);
+                      break;
+              }
+              
             });
-
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
 
             $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
 
             $filter.load(function() {
-                context.drawImage(this, 0, 0, 400, 400);
+                ctx.drawImage(this, 0, 0, 400, 400);
             });
         }
 
