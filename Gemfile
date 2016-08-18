@@ -11,6 +11,8 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'social-share-button', '~> 0.1.6'
 
+gem 'omniauth-facebook'
+
 group :development, :test do
   gem 'byebug'
 end
