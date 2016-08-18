@@ -2,7 +2,7 @@
   $(document).ready(function(){
 
         $("#file").hide();
-        
+        $("#my_canvas").hide();
 
         $("#blank_picture, #label, #my_image").click(function(){
           $("#file").click();
@@ -10,6 +10,8 @@
 
 
         $('#file').change(function(e) {
+            $("#sample").hide();
+            $("#my_canvas").show();
             var file = e.target.files[0],
                 imageType = /image.*/;
             
@@ -29,7 +31,23 @@
 
             $img.load(function() {
                 context.drawImage(this, 0, 0, 500, 500);
+
+                var exif = EXIF.readFromBinaryFile(new BinaryFile(this.result));
+
+                switch(exif.Orientation){
+
+                   case 8:
+                       context.rotate(90*Math.PI/180);
+                       break;
+                   case 3:
+                       context.rotate(180*Math.PI/180);
+                       break;
+                   case 6:
+                       context.rotate(-90*Math.PI/180);
+                       break;
+                }
             });
+
 
             $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
 
@@ -37,22 +55,37 @@
                 context.drawImage(this, 0, 0, 500, 500);
             });
         }
+
+
+        function dlCanvas() {
+          var canvas = $('#canvas')[0];
+          var dt = canvas.toDataURL('image/png');
+          /* Change MIME type to trick the browser to downlaod the file instead of displaying it */
+          dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+
+          /* In addition to <a>'s "download" attribute, you can define HTTP-style headers */
+          dt = dt.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png');
+
+          this.href = dt;
+        };
+        document.getElementById("dl").addEventListener('click', dlCanvas, false);
   });
-.div{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
+.div{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 20px 0 !important;  overflow: visible;"}
+  
   #main_content.container
     .row
       .col-md-12.text-center
         .text-uppercase{style: "font-size: 16px; color: white; font-weight: bold;"} Change your profile picture
     .row{style: "margin-top: 20px;"}
       .col-md-12.text-center
-        %p{style: "font-size: 12px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
+        %p{style: "font-size: 14px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
 
-    .row{}
+    .row{style: "margin-top: 20px;"}
       .col-md-6.col-md-offset-3{id: "my_image"}
-        - if @thumb_image.present?
-          = image_tag @thumb_image.to_s
-        - else
-          %canvas#canvas{:height => "500", :width => "500"}
+        = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
+    .row{id: "my_canvas"}
+      .col-md-6.col-md-offset-3
+        %canvas#canvas{:height => "500", :width => "500", style: "position: initial;"}
 
     = form_for @stamp do |f|
       .field.row
@@ -64,22 +97,21 @@
         %br
         %br
       .actions.text-center
-        = f.submit "Download", class: "btn btn-lg", id: "submit", style: "width: 200px; height: 50px; background-color: #121b4d; color: white;"
+        %a.btn.btn-lg.btn-primary{id:"dl", download: "clear_cambodia.png", href: "#"}
+          Download This Picture
+        
 
     %br
+
     .row
       .col-md-12.text-center{style: "color:white; font-size: 14px;"}
         %p Please download to your computer or mobile then set as Profile Picture
     %br
       .col-md-12.text-center{style: "color:white; font-size: 14px;"}
         %p #CamNatFootballTeam
+    
     %br
     %br
-    .row
-      .col-md-12.text-center
-        .btn.btn-lg{style: "width: 200px; height: 50px; background-color: #121b4d"}
-          = link_to "DOWNLOAD", :controller => "stamps", :action => "download", :thumb_image => @thumb_image, via: :get
-
     %br
     %br
     = render 'layouts/footer'
