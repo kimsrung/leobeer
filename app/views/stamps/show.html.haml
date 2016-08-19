@@ -3,36 +3,24 @@
         var image_uploaded_path = '';
 
         $("#file").hide();
-        $("#my_canvas").hide();
 
         $("#blank_picture, #label, #my_image").click(function(){
           $("#file").click();
         });
 
         var image_url = '#{@image_url}';
-        //if( image_url){
-        //  
-        //  $("#my_canvas").hide();
-        //  var canvas = document.getElementById('canvas');
-        //  var ctx = canvas.getContext('2d');
-        //  $img1 = $('<img>', { src: image_url});
-        //  $img1.load(function() {
-        //      ctx.drawImage(this, 0, 0, 400, 400);
-
-        //   $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}" });
-        //    $img2.load(function() {
-        //        ctx.drawImage(this, 0, 0, 400, 400);
-        //    });    
-        //  });
+        if( image_url){
+          $("#sample").attr("src", image_url);
           
+          console.log($('#file'));
+        }
           
-        //}
 
         var orientation = 1;
 
         $('#file').change(function(e) {
             
-            
+            console.log($('#file'));
             var file = e.target.files[0],
                 imageType = /image.*/;
             
@@ -193,13 +181,14 @@
       .col-md-12.text-center
         %p{style: "font-size: 14px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
 
-    /- if !@image_url.present?    
+    
     .row{style: "margin-top: 20px;"}
       .col-md-6.col-md-offset-3{id: "my_image"}
-        = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
-    .row{id: "my_canvas"}
-      .col-md-6.col-md-offset-3
-        %canvas#canvas{width: "400", height:"400", style: "position: initial; width: 400px; height: 400px;"}
+        - if !@image_url.present?    
+          = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
+        - else
+          = image_tag @image_url, id: "sample"
+    
     
     = form_for @stamp do |f|
       .field.row
