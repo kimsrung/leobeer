@@ -13,7 +13,7 @@
         if( image_url){
           alert('success load image: ' + image_url);
           $("#my_canvas").show();
-          var canvas = $('#canvas')[0];
+          var canvas = document.getElementById('canvas');
           canvas.width  = 400;
           canvas.height = 400;
           var ctx = canvas.getContext('2d');
@@ -59,7 +59,7 @@
         
         function fileOnload(e) {
             var $img = $('<img>', { src: e.target.result, crossOrigin: "Anonymous" });
-            var canvas = $('#canvas')[0];
+            var canvas = document.getElementById('canvas');
             canvas.width  = 400;
             canvas.height = 400;
             var ctx = canvas.getContext('2d');
@@ -128,7 +128,7 @@
 
         function dlCanvas() {
           alert("download was click");
-          var canvas = $('#canvas')[0];
+          var canvas = document.getElementById('canvas');
           var dt = canvas.toDataURL('image/png');
           /* Change MIME type to trick the browser to downlaod the file instead of displaying it */
           dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
