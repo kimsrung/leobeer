@@ -1,11 +1,11 @@
-#sth{style: "background: url('#{asset_path 'bg.png'}') top center no-repeat;; margin: 0 0 0 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
+#sth{style: "background: url('#{asset_path 'bg.png'}') top center no-repeat; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
   #main_content.container
     .row
       .col-md-12
         = image_tag asset_path("support_cambodia.png")  
     %br
     
-    .row{style: " color: black; font-size: 18px; font-family: 'Kantumruy-Regular'; font-weight: bold;"}
+    .row{style: " color: white; font-size: 18px; font-family: 'Kantumruy-Regular'; font-weight: bold;"}
       .col-md-12.text-center.text-uppercase
         %p Clear  គាំទ្រទឹកប្រាក់ 20,000,000រ 
         %p ដល់ក្រុមជម្រើសជាតិកម្ពុជា
@@ -65,6 +65,8 @@
     /         = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
     /         %p{style:"display: inline-block; margin-left: 20px; margin-top:15px;color: black; text-align:center;"} Play Kickup Challenge
 
+%div{style: "background-color: black;"}
+  .container
     %br
     %br        
     .row
