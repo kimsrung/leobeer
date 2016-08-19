@@ -15,7 +15,7 @@
           $("#my_canvas").show();
           var canvas = document.getElementById('canvas');
           var ctx = canvas.getContext('2d');
-          $img1 = $('<img>', { src: image_url, crossOrigin: "Anonymous"});
+          $img1 = $('<img>', { src: image_url});
           $img1.load(function() {
               ctx.drawImage(this, 0, 0, 400, 400);
 
@@ -55,7 +55,7 @@
         });
         
         function fileOnload(e) {
-            var $img = $('<img>', { src: e.target.result, crossOrigin: "Anonymous" });
+            var $img = $('<img>', { src: e.target.result});
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
             
@@ -112,7 +112,7 @@
               $filter.load(function() {
                   ctx.drawImage(this, 0, 0, 400, 400);
               });
-              
+
             });
 
           
