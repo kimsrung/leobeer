@@ -61,7 +61,7 @@
                 xhr: function() {  // Custom XMLHttpRequest
                     var myXhr = $.ajaxSettings.xhr();
                     if(myXhr.upload){ // Check if upload property exists
-                        //myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
                     }
                     return myXhr;
                 },
@@ -82,6 +82,13 @@
           image_uploaded_path = data.image_uploaded_path
           console.log(image_uploaded_path);
         }
+
+        function progressHandlingFunction(e){
+            if(e.lengthComputable){
+                $('#progress').text('Processing:' + e.loaded*100.0/e.total);
+            }
+        }
+
         
         function fileOnload(e) {
             var $img = $('<img>', { src: e.target.result});
@@ -196,7 +203,7 @@
           %p{style: "color: white; font-size:10px;"} (Please allows up to 5 seconds for image to be processed properly)
           = image_tag "", id: "blah", width: 200, height:200
           = f.file_field :image, id: "file"
-
+          %p{id: "progress", style: "color:white; font-size:20px;"} Progress...
         %br
         %br
       .actions.text-center
