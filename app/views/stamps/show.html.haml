@@ -10,47 +10,47 @@
         });
 
         var image_url = '#{@image_url}';
-        if( image_url){
-          
-          $("#my_canvas").show();
-          var canvas = document.getElementById('canvas');
-          var ctx = canvas.getContext('2d');
-          $img1 = $('<img>', { src: image_url});
-          $img1.load(function() {
-              ctx.drawImage(this, 0, 0, 400, 400);
+        //if( image_url){
+        //  
+        //  $("#my_canvas").hide();
+        //  var canvas = document.getElementById('canvas');
+        //  var ctx = canvas.getContext('2d');
+        //  $img1 = $('<img>', { src: image_url});
+        //  $img1.load(function() {
+        //      ctx.drawImage(this, 0, 0, 400, 400);
 
-            $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}" });
-            $img2.load(function() {
-                ctx.drawImage(this, 0, 0, 400, 400);
-            });    
-          });
+        //   $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}" });
+        //    $img2.load(function() {
+        //        ctx.drawImage(this, 0, 0, 400, 400);
+        //    });    
+        //  });
           
           
-        }
+        //}
 
         var orientation = 1;
 
         $('#file').change(function(e) {
-            $("#sample").hide();
-            $("#my_canvas").show();
+            
+            
             var file = e.target.files[0],
                 imageType = /image.*/;
             
             if (!file.type.match(imageType))
                 return;
             
-            loadImage.parseMetaData(file, function (data) {
-              if (data.exif) {
-                console.log('orientation');
-                orientation = data.exif.get('Orientation');
-                console.log(orientation);
-              }
-            })
+            // loadImage.parseMetaData(file, function (data) {
+            //   if (data.exif) {
+            //    console.log('orientation');
+            //     orientation = data.exif.get('Orientation');
+            //     console.log(orientation);
+            //   }
+            // })
 
 
-            var reader = new FileReader();
-            reader.onload = fileOnload;
-            reader.readAsDataURL(file);
+            // var reader = new FileReader();
+            // reader.onload = fileOnload;
+            // reader.readAsDataURL(file);
 
 
             var formData = new FormData($('#new_stamp')[0]);
@@ -81,7 +81,13 @@
           console.log("image uploaded");
           image_uploaded_path = data.image_uploaded_path
           console.log(image_uploaded_path);
+          var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
+          console.log("new src");
+          console.log(src)
+          $('#sample').attr("src", src );
+          $('#sample').show();
           $('#progress').text('Done!');
+
         }
 
         function progressHandlingFunction(e){
@@ -187,14 +193,14 @@
       .col-md-12.text-center
         %p{style: "font-size: 14px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
 
-    - if !@image_url.present?    
-      .row{style: "margin-top: 20px;"}
-        .col-md-6.col-md-offset-3{id: "my_image"}
-          = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
+    /- if !@image_url.present?    
+    .row{style: "margin-top: 20px;"}
+      .col-md-6.col-md-offset-3{id: "my_image"}
+        = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
     .row{id: "my_canvas"}
       .col-md-6.col-md-offset-3
         %canvas#canvas{width: "400", height:"400", style: "position: initial; width: 400px; height: 400px;"}
-
+    
     = form_for @stamp do |f|
       .field.row
         .col-md-12.text-center
