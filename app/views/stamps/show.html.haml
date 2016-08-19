@@ -14,20 +14,17 @@
           alert('success load image: ' + image_url);
           $("#my_canvas").show();
           var canvas = document.getElementById('canvas');
-          canvas.width  = 400;
-          canvas.height = 400;
           var ctx = canvas.getContext('2d');
           $img1 = $('<img>', { src: image_url, crossOrigin: "Anonymous"});
           $img1.load(function() {
               ctx.drawImage(this, 0, 0, 400, 400);
 
-              $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
-
-              $img2.load(function() {
-                  ctx.drawImage(this, 0, 0, 400, 400);
-              });
+            $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
+            $img2.load(function() {
+                ctx.drawImage(this, 0, 0, 400, 400);
+            });    
           });
-
+          
           
         }
 
@@ -60,8 +57,6 @@
         function fileOnload(e) {
             var $img = $('<img>', { src: e.target.result, crossOrigin: "Anonymous" });
             var canvas = document.getElementById('canvas');
-            canvas.width  = 400;
-            canvas.height = 400;
             var ctx = canvas.getContext('2d');
             
             ctx.save();
@@ -111,18 +106,16 @@
               
               ctx.drawImage(this, 0, 0, 400, 400);
               ctx.restore();  
+              orientation = 1
 
               $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
-
               $filter.load(function() {
                   ctx.drawImage(this, 0, 0, 400, 400);
               });
-              orientation = 1
+              
             });
 
-
-            
-
+          
         }
 
 
