@@ -18,7 +18,7 @@ class StampsController < ApplicationController
                   )["picture"]["data"]["url"]
       @stamp.remote_image_url = fb_url
       @image_url = "#{request.protocol}#{request.host}"+ @stamp.image.thumb.to_s
-    
+      @image_path = @stamp.image.thumb.to_s
     end
 
   end
