@@ -8,8 +8,20 @@ class StampsController < ApplicationController
 
   def show
     @stamp = Stamp.new
-    @image_url = User.find_by(uid: params[:id]).image_url
-    
+    user = User.find_by(uid: params[:id])
+    @image_url = ActionController::Base.helpers.asset_path("BlueFilterAndLogo.png").to_s
+    if user.present?
+      if user.image_url.present?
+        @image_url = user.image_url
+      else
+        @image_url = JSON.parse(
+                      RestClient.get("https://graph.facebook.com/#{user.uid}?fields=picture.width(500).height(500)&access_token=#{user.oauth_token}")
+                    )["picture"]["data"]["url"]
+        user.image_url = @image_url
+        user.save
+      end
+    end
+
   end
 
   def download
