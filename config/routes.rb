@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :stamps do
   	collection do 
   		get 'download'
+      post 'upload'
   	end
   end
 end

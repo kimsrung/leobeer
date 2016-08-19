@@ -1,6 +1,6 @@
 :javascript
   $(document).ready(function(){
-
+        var image_uploaded_path = '';
 
         $("#file").hide();
         $("#my_canvas").hide();
@@ -11,7 +11,7 @@
 
         var image_url = '#{@image_url}';
         if( image_url){
-          alert('success load image: ' + image_url);
+          
           $("#my_canvas").show();
           var canvas = document.getElementById('canvas');
           var ctx = canvas.getContext('2d');
@@ -19,7 +19,7 @@
           $img1.load(function() {
               ctx.drawImage(this, 0, 0, 400, 400);
 
-            $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
+            $img2 = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}" });
             $img2.load(function() {
                 ctx.drawImage(this, 0, 0, 400, 400);
             });    
@@ -51,8 +51,37 @@
             var reader = new FileReader();
             reader.onload = fileOnload;
             reader.readAsDataURL(file);
+
+
+            var formData = new FormData($('#new_stamp')[0]);
+            $.ajax({
+                url: '/stamps/upload',  //Server script to process data
+                type: 'POST',
+                dataType: "json",
+                xhr: function() {  // Custom XMLHttpRequest
+                    var myXhr = $.ajaxSettings.xhr();
+                    if(myXhr.upload){ // Check if upload property exists
+                        //myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                    }
+                    return myXhr;
+                },
+                
+                // Form data
+                data: formData,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false,
+                success : handleData
+            });
             
         });
+
+        function handleData(data) {
+          console.log("image uploaded");
+          image_uploaded_path = data.image_uploaded_path
+          console.log(image_uploaded_path);
+        }
         
         function fileOnload(e) {
             var $img = $('<img>', { src: e.target.result});
@@ -120,7 +149,12 @@
 
 
         function dlCanvas() {
-          alert("download was click");
+          if (image_uploaded_path && image_uploaded_path.length > 0){
+            dt = "#{request.protocol}#{request.host}" + "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path; 
+            console.log(dt);
+            $("#dl").attr('href', dt);
+            return ;
+          }
           var canvas = document.getElementById('canvas');
           var dt = canvas.toDataURL('image/png');
           /* Change MIME type to trick the browser to downlaod the file instead of displaying it */

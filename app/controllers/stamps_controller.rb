@@ -24,13 +24,17 @@ class StampsController < ApplicationController
 
   end
 
+  def upload
+    stamp = Stamp.new(stamp_params)
+    stamp.id = 1
+    return render json: {image_uploaded_path: stamp.image.thumb.to_s}
+  end
+
   def download
-    if params[:thumb_image].present?
-  	 send_file Rails.public_path.to_s + params[:thumb_image]
+    if params[:filepath].present?
+  	 send_file Rails.public_path.to_s + params[:filepath]
     else
-      @stamp = Stamp.new
-      @stamp.id = 1
-      redirect_to stamp_path(@stamp)
+      send_file Rails.public_path.to_s + ActionController::Base.helpers.asset_path("BlueFilterAndLogo.png").to_s
     end
   end
 
