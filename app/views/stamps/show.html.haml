@@ -160,16 +160,12 @@
         document.getElementById("dl").addEventListener('click', dlCanvas, false);
   });
 
-#sth{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 20px 0 !important;  overflow: visible;"}
+#sth{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 20px 0 !important;  overflow: visible; font-family: 'Kantumruy-Regular' ;"}
   
   #main_content.container
     .row
       .col-md-12.text-center
-        .text-uppercase{style: "font-size: 16px; color: white; font-weight: bold;"} Change your profile picture
-    .row{style: "margin-top: 20px;"}
-      .col-md-12.text-center
-        %p{style: "font-size: 14px; color: white;"} Show your support for Cambodia National Football Team and Celebrate the moment!
-
+        .text-uppercase{style: "font-size: 16px; color: white; font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព  Profile  ស្មើនឹងការចូលរួមជាមួយ  Clear  1 សម្លេង
     
     .row{style: "margin-top: 20px;"}
       .col-md-6.col-md-offset-3{id: "my_image"}
@@ -182,10 +178,10 @@
     = form_for @stamp do |f|
       .field.row
         .col-md-12.text-center
-          = f.label :image, "Change picture", style: "display: inline-block; color: white;", id: "label"
+          = f.label :image, "ផ្លាស់ប្តូររូបភាព", style: "display: inline-block; color: white;", id: "label"
           
           = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
-          %p{id: "progress", style: "color: white; font-size:10px;"} (Please allow few seconds for image to be processed properly)
+          %p{id: "progress", style: "color: white; font-size:10px; font-family: 'Kantumruy-Regular' ;"} (សូមរងចាំ  2~3 វិនាទីដើម្បីអោយរូបភាពអ្នកផ្លាស់ប្តូរ)
           = image_tag "", id: "blah", width: 200, height:200
           = f.file_field :image, id: "file"
           
@@ -193,13 +189,13 @@
         %br
       .actions.text-center
         %a.btn.btn-lg.btn-primary{id:"dl", download: "clear_cambodia.png", href: ""}
-          Download This Picture
+          DOWNLOAD រូបភាពនេះ
         
     %br
 
     .row
-      .col-md-12.text-center{style: "color:white; font-size: 14px;"}
-        %p Please download to your computer or mobile then set as Profile Picture
+      .col-md-12.text-center{style: "color:white; font-size: 14px; font-family: 'Kantumruy-Regular'  "}
+        %p សូមចុច  Download និង Save រូបភាពនេះចូលទៅក្នុងកុំព្យូទ័រ រឺទូរស័ព្ទដៃដើម្បីយក វាទៅដាក់ជារូបភាព Profile នៅលើ Facebook របស់អ្នកជាមួយ #wesupportcambodia
     %br
       .col-md-12.text-center{style: "color:white; font-size: 14px;"}
         %p #CamNatFootballTeam
