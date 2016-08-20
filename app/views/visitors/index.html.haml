@@ -5,31 +5,30 @@
         = image_tag asset_path("support_cambodia.png")  
     %br
     
-    .row{style: " color: white; font-size: 18px; font-family: 'Koulen';"}
+    .row{style: " color: white; font-size: 18px; font-family: 'Koulen'; margin-bottom:30px;"}
       .col-md-12.text-center.text-uppercase
-        %p Clear  គាំទ្រទឹកប្រាក់ 20,000,000រ 
+        %p CLEAR  គាំទ្រទឹកប្រាក់ 20,000,000៛ 
         %p ដល់ក្រុមជម្រើសជាតិកម្ពុជា
     
     / .row{style: "color: black; font-size: 14px; font-family: 'Oswald-Regular'; "}
     /   .col-md-12.text-center.text-uppercase
     /     %p Join us to reward 20,000,000 Riel
     /     %p To Cambodia National Football Team
-    %br
     .row
-      .col-md-3
-      .col-md-6
+      .col-md-2
+      .col-md-8
         - value = "0001618"
-        %table{style: "width: 100%;"}
+        %table{style: "width: 60%; margin-left: 20%;"}
           %tr
             - value.split("").each do |c|
-              %td.score{style: "width: 13.5%; padding:10px;padding-top:20px; font-size: 18px; font-family: 'Oswald-Regular' "}
+              %td.score{style: "width: 13%;padding-top:7px; font-size: 16px; font-family: 'Oswald-Regular' "}
                 %p.text-center= "#{c}"
-      .col-md-3
+      .col-md-2
     %br
     %br
     .row#help-us{style: "color: white; font-size: 14px; font-family: 'Kantumruy-Regular';"}
       .col-md-12.text-center
-        %p Clear ត្រូវការគាំទ្រ 
+        %p CLEAR ត្រូវការគាំទ្រ 
         %p 1 លានសម្លេង = 20 លានរៀល
         %br
         %p វិធីងាយៗដើម្បីគាំទ្រ៖
@@ -75,14 +74,51 @@
     .row
       .col-md-1
       .col-md-10
-        %iframe{width: "100%", height: "600", src: "https://www.youtube.com/embed/p-pww2lDFGQ"}
+        /%iframe{width: "100%", height: "600", src: "https://www.youtube.com/embed/p-pww2lDFGQ?autoplay=1"}
+        #player
       .col-md-1
 
-    %br
-    %br
-    %br
-    %br   
-
     = render 'layouts/footer'
+
+:javascript
+  // 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      width: '100%',
+      videoId: 'p-pww2lDFGQ',
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // 4. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 6000);
+      done = true;
+    }
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
 
 
