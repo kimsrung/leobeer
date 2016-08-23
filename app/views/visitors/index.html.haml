@@ -9,7 +9,7 @@
       .col-md-12.text-center.text-uppercase
         %p{style: "display: inline; font-size:16px; font-family: 'Oswald-Bold'; "} CLEAR
         %p{style: "display: inline;"}  គាំទ្រទឹកប្រាក់ 
-        %p{style: "display: inline;font-size:16px; font-family: 'Oswald-Bold'; "} 20,000,000៛
+        %p{style: "display: inline;font-size:16px; font-family: 'Oswald-Bold'; "} 20,000,000 <strong>៛</strong>
         %p ដល់ក្រុមជម្រើសជាតិកម្ពុជា
     
     / .row{style: "color: black; font-size: 14px; font-family: 'Oswald-Regular'; "}
@@ -18,7 +18,7 @@
     /     %p To Cambodia National Football Team
     .row
       .col-md-12.text-center
-        %p{style: " color: white; font-size: 14px; font-family: 'Kh-Content';"} លទ្ធផលសំលេងគាំទ្រ
+        %p{style: " color: white; font-size: 14px; font-family: 'Kantumruy-Regular';"} លទ្ធផលសំលេងគាំទ្រ
     .row
       .col-md-2
       .col-md-8
@@ -35,7 +35,7 @@
         - padding_day = date.day < 10 ? '0' : ''
         - padding_month = date.month <10 ? '0' : ''
         %br
-        %p{style: " color: white; font-size: 14px; font-family: 'Kh-Content';"}="ថ្ងៃទី#{padding_day}#{date.day} ខែ#{padding_month}#{date.month} ឆ្នាំ#{date.year}"
+        %p{style: "font-family: 'Kantumruy-Regular'; color: white; font-size: 14px;"}="ថ្ងៃទី #{padding_day}#{date.day} ខែ #{padding_month}#{date.month} ឆ្នាំ #{date.year}"
     %br
     %br
     .row#help-us{style: "color: white; font-size: 14px; font-family: 'Kantumruy-Regular';"}
@@ -56,16 +56,16 @@
           %div{style: "background-color: #121b4d;"}
             = image_tag asset_path("profile.png"), size: "30x30", style:"display: inline-block; margin: 10px;"
             = image_tag asset_path("line.png"), size: "1x1", style:"display: inline-block;"
-            %p{style:"display:inline-block; color: white; font-size: 17px; margin-top: 15px; margin-left: 60px;"} ប្តូររូបភាព PROFILE
+            %p{style:"display:inline-block; color: white; font-size: 17px; margin-top: 15px; margin-left: 60px; font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព PROFILE
     %br
     .row
       .col-md-4
       .col-md-4
-        %a{href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.clearantidandruffcambodia.com%2F&amp;src=sdkpreparse", target: "blank", style: "text-decoration: none;"}
+        %a{href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.clearantidandruffcambodia.com%2F&amp;src=sdkpreparse", target: "blank", style: "text-decoration: none; font-family: 'Kantumruy-Regular';"}
           .div{style: "background-color: #121b4d;"}
             = image_tag asset_path("fb.png"), size: "13x25", style:"display: inline; margin: 10px; margin-right:33px; margin-left:10px;"
             = image_tag asset_path("line.png"), size: "1x1", style:"display: inline; margin-left: -5px;"
-            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 10px; margin-left:40px;"} ចែករំលែកលើ FACEBOOK
+            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 13px; margin-left:50px;"} ចែករំលែកលើ FACEBOOK
 
 
     
