@@ -7,13 +7,18 @@
     
     .row{style: " color: white; font-size: 18px; font-family: 'Koulen'; margin-bottom:30px;"}
       .col-md-12.text-center.text-uppercase
-        %p CLEAR  គាំទ្រទឹកប្រាក់ 20,000,000៛ 
+        %p{style: "display: inline; font-size:16px; font-family: 'Oswald-Bold'; "} CLEAR
+        %p{style: "display: inline;"}  គាំទ្រទឹកប្រាក់ 
+        %p{style: "display: inline;font-size:16px; font-family: 'Oswald-Bold'; "} 20,000,000៛
         %p ដល់ក្រុមជម្រើសជាតិកម្ពុជា
     
     / .row{style: "color: black; font-size: 14px; font-family: 'Oswald-Regular'; "}
     /   .col-md-12.text-center.text-uppercase
     /     %p Join us to reward 20,000,000 Riel
     /     %p To Cambodia National Football Team
+    .row
+      .col-md-12.text-center
+        %p{style: " color: white; font-size: 14px; font-family: 'Kh-Content';"} លទ្ធផលសំលេងគាំទ្រ
     .row
       .col-md-2
       .col-md-8
@@ -24,6 +29,13 @@
               %td.score{style: "width: 13%;padding-top:7px; font-size: 16px; font-family: 'Oswald-Regular' "}
                 %p.text-center= "#{c}"
       .col-md-2
+    .row
+      .col-md-12.text-center
+        - date = DateTime.now
+        - padding_day = date.day < 10 ? '0' : ''
+        - padding_month = date.month <10 ? '0' : ''
+        %br
+        %p{style: " color: white; font-size: 14px; font-family: 'Kh-Content';"}="ថ្ងៃទី#{padding_day}#{date.day} ខែ#{padding_month}#{date.month} ឆ្នាំ#{date.year}"
     %br
     %br
     .row#help-us{style: "color: white; font-size: 14px; font-family: 'Kantumruy-Regular';"}
@@ -35,16 +47,16 @@
         %p ទិញសាប៊ូក្លៀរកញ្ចប់ = 1 សំលេង
         %p ទិញសាប៊ូក្លៀរដប = 10 សំលេង
         %br
-        %p គាំទ្រតាមវិធីខាងក្រោម៖
+        %p ឬគាំទ្រតាមវិធីខាងក្រោម៖
 
     .row
       .col-md-4
       .col-md-4
-        %a{href: "/support", style: "text-decoration: none;"}
-          .div{style: "background-color: #121b4d;"}
-            = image_tag asset_path("profile.png"), size: "30x30", style:"display: inline; margin: 10px;"
-            = image_tag asset_path("line.png"), size: "1x1", style:"display: inline;"
-            %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 10px; margin-left:20px;"} Show your support
+        %a{href: "/auth/facebook", style: "text-decoration: none;"}
+          %div{style: "background-color: #121b4d;"}
+            = image_tag asset_path("profile.png"), size: "30x30", style:"display: inline-block; margin: 10px;"
+            = image_tag asset_path("line.png"), size: "1x1", style:"display: inline-block;"
+            %p{style:"display:inline-block; color: white; font-size: 17px; margin-top: 15px; margin-left: 60px;"} ប្តូររូបភាព PROFILE
     %br
     .row
       .col-md-4
@@ -53,8 +65,7 @@
           .div{style: "background-color: #121b4d;"}
             = image_tag asset_path("fb.png"), size: "13x25", style:"display: inline; margin: 10px; margin-right:33px; margin-left:10px;"
             = image_tag asset_path("line.png"), size: "1x1", style:"display: inline; margin-left: -5px;"
-            
-            %p{style:"display: inline-block; color: white; font-size: 18px; margin-top: 10px; margin-left:20px;"} Share on Facebook
+            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 10px; margin-left:40px;"} ចែករំលែកលើ FACEBOOK
 
 
     
