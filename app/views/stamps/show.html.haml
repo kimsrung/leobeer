@@ -189,7 +189,7 @@
         %br
         %br
       .actions.text-center
-        %a.btn.btn-lg.btn-primary{id:"dl", download: "clear_cambodia.png", href: ""}
+        %a.btn.btn-lg{id:"dl", download: "clear_cambodia.png", href: "", style: "background-color: #121b4d; text-decoration: none; color:white;"}
           ទាញយករូបភាពនេះ
         
     %br
@@ -200,6 +200,14 @@
     
     %br
     %br
+    .row
+      .col-md-4
+      .col-md-4
+        %a{href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.clearantidandruffcambodia.com%2F&amp;src=sdkpreparse", target: "blank", style: "text-decoration: none; font-family: 'Kantumruy-Regular';"}
+          .div{style: "background-color: #121b4d;"}
+            = image_tag asset_path("fb.png"), size: "13x25", style:"display: inline; margin: 10px; margin-right:33px; margin-left:10px;"
+            = image_tag asset_path("line.png"), size: "1x1", style:"display: inline; margin-left: -5px;"
+            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 13px; margin-left:50px;"} ចែករំលែកលើ FACEBOOK
     %br
     %br
     = render 'layouts/footer'
