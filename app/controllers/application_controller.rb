@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_filter :prepare_for_mobile
   before_filter :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
@@ -40,6 +41,13 @@ class ApplicationController < ActionController::Base
     def current_user
       @current_user ||= User.find(session[:user_id]) if session[:user_id]
     end
+
+    def prepare_for_mobile
+      session[:mobile_param] = params[:mobile] if params[:mobile]
+      request.format = :mobile if mobile_device?
+    end
+
   helper_method :current_user
+
   
 end

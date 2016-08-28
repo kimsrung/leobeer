@@ -1,4 +1,4 @@
-#sth{style: "background: url('#{asset_path 'bg.png'}') top center no-repeat; background-size: 100%; margin: 0 0 100 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
+#sth{style: "background: url('#{asset_path 'bg.png'}') top center no-repeat; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
   #main_content.container
     .row
       .col-md-12
@@ -23,10 +23,10 @@
       .col-md-2
       .col-md-8
         - value = "0001618"
-        %table{style: "width: 50%; margin-left: 25%;"}
+        %table{style: "width: 60%; margin-left: 20%;"}
           %tr
             - value.split("").each do |c|
-              %td.score{style: "width: 13%; height: 80px;padding-top:20px; font-size: 24px; font-family: 'Oswald-Regular' "}
+              %td.score{style: "width: 13%;padding-top:7px; font-size: 16px; font-family: 'Oswald-Regular' "}
                 %p.text-center= "#{c}"
       .col-md-2
     .row
@@ -56,7 +56,7 @@
           %div{style: "background-color: #121b4d;"}
             = image_tag asset_path("profile.png"), size: "30x30", style:"display: inline-block; margin: 10px;"
             = image_tag asset_path("line.png"), size: "1x1", style:"display: inline-block;"
-            %p{style:"display:inline-block; color: white; font-size: 17px; margin-top: 15px; margin-left: 60px; font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព PROFILE
+            %p{style:"display:inline-block; color: white; font-size: 17px; margin-top: 15px; margin-left: 40px; font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព PROFILE
     %br
     .row
       .col-md-4
@@ -65,7 +65,7 @@
           .div{style: "background-color: #121b4d;"}
             = image_tag asset_path("fb.png"), size: "13x25", style:"display: inline; margin: 10px; margin-right:33px; margin-left:10px;"
             = image_tag asset_path("line.png"), size: "1x1", style:"display: inline; margin-left: -5px;"
-            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 13px; margin-left:50px;"} ចែករំលែកលើ FACEBOOK
+            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 13px; margin-left:20px;"} ចែករំលែកលើ FACEBOOK
 
 
     
@@ -80,18 +80,18 @@
     /         = image_tag asset_path("line.png"), style:"display: inline; margin-left: -5px;"
     /         %p{style:"display: inline-block; margin-left: 20px; margin-top:15px;color: black; text-align:center;"} Play Kickup Challenge
 
-    %div
-      .container
-        %br
-        %br        
-        .row
-          .col-md-1
-          .col-md-10
-            /%iframe{width: "100%", height: "600", src: "https://www.youtube.com/embed/p-pww2lDFGQ?autoplay=1"}
-            #player
-          .col-md-1
-        %br        
-        = render 'layouts/footer'
+%div{style: "background-color: black;"}
+  .container
+    %br
+    %br        
+    .row
+      .col-md-1
+      .col-md-10
+        /%iframe{width: "100%", height: "600", src: "https://www.youtube.com/embed/p-pww2lDFGQ?autoplay=1"}
+        #player
+      .col-md-1
+    %br        
+    = render 'layouts/footer'
 
 :javascript
   // 2. This code loads the IFrame Player API code asynchronously.
@@ -107,7 +107,7 @@
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
       width: '100%',
-      videoId: 'p-pww2lDFGQ',x
+      videoId: 'p-pww2lDFGQ',
       playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0 },
       events: {
         'onReady': onPlayerReady,
