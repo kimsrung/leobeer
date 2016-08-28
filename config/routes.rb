@@ -13,4 +13,12 @@ Rails.application.routes.draw do
       post 'upload'
   	end
   end
+
+  namespace :admin do 
+    resources :transactions do 
+
+    end
+  end
+  
+
 end

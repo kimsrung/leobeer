@@ -15,13 +15,13 @@ function CGfxButton(iXPos,iYPos,oSprite){
         _iWidth = oSprite.width;
         _iHeight = oSprite.height;
         
-        _oButton = new createjs.Bitmap( oSprite);
+        _oButton = createBitmap( oSprite);
         _oButton.x = iXPos;
         _oButton.y = iYPos; 
                                    
         _oButton.regX = oSprite.width/2;
         _oButton.regY = oSprite.height/2;
-       
+        _oButton.cursor = "pointer";
         s_oStage.addChild(_oButton);
         
         

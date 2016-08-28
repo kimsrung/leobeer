@@ -1,5 +1,5 @@
 function CMain(oData){
-
+    var _bUpdate;
     var _iCurResource = 0;
     var RESOURCE_TO_LOAD = 0;
     var _iState = STATE_LOADING;
@@ -10,6 +10,7 @@ function CMain(oData){
 
     this.initContainer = function(oData){
         // init constants
+	TIME_GAME = oData.time_game;
         INIT_GRAVITY_NORMAL = oData.gravity;
         INIT_BALLMASS_NORMAL = oData.ballMass;
         FRICTION_NORMAL = oData.friction;
@@ -41,24 +42,34 @@ function CMain(oData){
 
         createjs.Ticker.setFPS(30);
         createjs.Ticker.addEventListener("tick", this._update);
-
-        if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
-            this._initSounds();
+        
+        if (navigator.userAgent.match(/Windows Phone/i)) {
+            DISABLE_SOUND_MOBILE = true;
         }
 		
         s_oSpriteLibrary  = new CSpriteLibrary();
 
         //ADD PRELOADER
         _oPreloader = new CPreloader();
-
+        _bUpdate = true;
+    };
+    
+    this.preloaderReady = function(){
         this._loadImages();
+		
+	if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
+            this._initSounds();
+        }
     };
 
     this.soundLoaded = function(){
          _iCurResource++;
+         var iPerc = Math.floor(_iCurResource/RESOURCE_TO_LOAD *100);
 
+         _oPreloader.refreshLoader(iPerc);
+        
          if(_iCurResource === RESOURCE_TO_LOAD){
-             _oPreloader.unload();
+            _oPreloader.unload();
             
             this.gotoMenu();
          }
@@ -91,18 +102,19 @@ function CMain(oData){
     this._loadImages = function(){
         s_oSpriteLibrary.init( this._onImagesLoaded,this._onAllImagesLoaded, this );
 
-        s_oSpriteLibrary.addSprite("audio_icon","<%= asset_path('audio_icon.png') %>");
+        s_oSpriteLibrary.addSprite("audio_icon",".<%= asset_path('audio_icon.png') %>");
         s_oSpriteLibrary.addSprite("ball_1","<%= asset_path('ball_1.png') %>");
         s_oSpriteLibrary.addSprite("ball_2","<%= asset_path('ball_2.png') %>");
         s_oSpriteLibrary.addSprite("ball_3","<%= asset_path('ball_3.png') %>");
         s_oSpriteLibrary.addSprite("ball_hit","<%= asset_path('ball_hit.png') %>");
         s_oSpriteLibrary.addSprite("shadow","<%= asset_path('shadow.png') %>");
         s_oSpriteLibrary.addSprite("bg_game","<%= asset_path('bg_game.jpg') %>");
-        s_oSpriteLibrary.addSprite("bg_help","<%= asset_path('bg_help.png') %>");
         s_oSpriteLibrary.addSprite("bg_menu","<%= asset_path('bg_menu.jpg') %>");
-        s_oSpriteLibrary.addSprite("but_exit","<%= asset_path('but_play.png') %>");
+        s_oSpriteLibrary.addSprite("but_exit","<%= asset_path('but_exit.png') %>");
         s_oSpriteLibrary.addSprite("but_play","<%= asset_path('but_play.png') %>");
         s_oSpriteLibrary.addSprite("panel","<%= asset_path('msg_box.png') %>");
+        s_oSpriteLibrary.addSprite("but_credits","<%= asset_path('but_credits.png') %>");
+        s_oSpriteLibrary.addSprite("logo_credits","<%= asset_path('logo_credits.png') %>");
 
         s_oSpriteLibrary.addSprite("player_1", "<%= asset_path('player_sprite_1.png') %>");
         s_oSpriteLibrary.addSprite("player_2", "<%= asset_path('player_sprite_2.png') %>");
@@ -148,7 +160,6 @@ function CMain(oData){
         _oGame = new CGame(bChallengeMode);
 			
         _iState = STATE_GAME;
-        $(s_oMain).trigger("game_start");
     };
     
     this.gotoHelp = function(){
@@ -156,7 +167,26 @@ function CMain(oData){
         _iState = STATE_HELP;
     };
     
+    this.stopUpdate = function(){
+        _bUpdate = false;
+        createjs.Ticker.paused = true;
+        $("#block_game").css("display","block");
+    };
+
+    this.startUpdate = function(){
+        s_iPrevTime = new Date().getTime();
+        _bUpdate = true;
+        createjs.Ticker.paused = false;
+        $("#block_game").css("display","none");
+    };
+
+
+    
     this._update = function(event){
+        if(!_bUpdate){
+            return;
+        }
+        
         var iCurTime = new Date().getTime();
         s_iTimeElaps = iCurTime - s_iPrevTime;
         s_iCntTime += s_iTimeElaps;

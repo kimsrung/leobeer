@@ -16,19 +16,19 @@ function CTextButton(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize,oContai
         _aCbOwner =new Array();
         _oContainer = oContainer;
 
-        _oButtonBg = new createjs.Bitmap( oSprite);
+        _oButtonBg = createBitmap( oSprite);
         _iWidth = oSprite.width;
         _iHeight = oSprite.height;
         var iStepShadow = Math.ceil(iFontSize/20);
 
-        _oTextBack = new createjs.Text(szText,"bold "+iFontSize+"px "+szFont, "#000000");
+        _oTextBack = new createjs.Text(szText,iFontSize+"px "+szFont, "#000000");
         var oBounds = _oTextBack.getBounds();
         _oTextBack.textAlign = "center";
         _oTextBack.textBaseline = "alphabetic";
         _oTextBack.x = oSprite.width/2 + iStepShadow;
         _oTextBack.y = Math.floor((oSprite.height)/2) +(oBounds.height/3) + iStepShadow;
 
-        _oText = new createjs.Text(szText,"bold "+iFontSize+"px "+szFont, szColor);
+        _oText = new createjs.Text(szText,iFontSize+"px "+szFont, szColor);
         _oText.textAlign = "center";
         _oText.textBaseline = "alphabetic";  
         _oText.x = oSprite.width/2;
@@ -39,6 +39,7 @@ function CTextButton(iXPos,iYPos,oSprite,szText,szFont,szColor,iFontSize,oContai
         _oButton.y = iYPos;
         _oButton.regX = oSprite.width/2;
         _oButton.regY = oSprite.height/2;
+        _oButton.cursor = "pointer";
         _oButton.addChild(_oButtonBg,_oTextBack,_oText);
 
         _oContainer.addChild(_oButton);

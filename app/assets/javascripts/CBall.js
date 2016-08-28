@@ -1,6 +1,7 @@
 function CBall(CGameRef){
 
 	var _bFrozen = false;
+	
 
 	var _fMass = INIT_BALLMASS_NORMAL;
 	var _fTheta = 0;
@@ -25,20 +26,20 @@ function CBall(CGameRef){
 
 	this._init = function(CGameRef){
 		var szBallType = "ball_" + Math.floor(Math.random()*3 + 1);
-		_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite(szBallType));
+		_oSprite = createBitmap(s_oSpriteLibrary.getSprite(szBallType));
 		_oSprite.regX = BALL_SIZE/2;
 		_oSprite.regY = BALL_SIZE/2;
 		_oSprite.x = CANVAS_WIDTH/2;
 		_oSprite.y = CANVAS_HEIGHT/2;
 
-		_oShadowSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite('shadow'));
+		_oShadowSprite = createBitmap(s_oSpriteLibrary.getSprite('shadow'));
 		_oShadowSprite.regX = SHADOW_WIDTH/2;
 		_oShadowSprite.regY = SHADOW_HEIGHT/2;
 		_oShadowSprite.x = _oSprite.x;
 		_oShadowSprite.y = CANVAS_HEIGHT - BALL_BOUNCE_YOFFSET;
 		_oShadowSprite.alpha = 0.65;
 
-		_oHitSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite('ball_hit'));
+		_oHitSprite = createBitmap(s_oSpriteLibrary.getSprite('ball_hit'));
 		_oHitSprite.regX = BALL_SIZE/2;
 		_oHitSprite.regY = BALL_SIZE/2;
 		_oHitSprite.x = CANVAS_WIDTH/2;
@@ -117,6 +118,9 @@ function CBall(CGameRef){
 	};
 
 	this.clicked = function(evt){
+	if(s_bClickBall === false){
+			return;
+		}
                 if(DISABLE_SOUND_MOBILE === false || s_bMobile === false){
                     createjs.Sound.play("tap");
                 }

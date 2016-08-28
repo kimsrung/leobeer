@@ -33,20 +33,20 @@ function CBallChallenge(CGameRef){
 		this._initForces();
 
 		var szBallType = "ball_" + Math.floor(Math.random()*3 + 1);
-		_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite(szBallType));
+		_oSprite = createBitmap(s_oSpriteLibrary.getSprite(szBallType));
 		_oSprite.regX = BALL_SIZE/2;
 		_oSprite.regY = BALL_SIZE/2;
 		_oSprite.x = CANVAS_WIDTH/2;
 		_oSprite.y = CANVAS_HEIGHT/2;
 
-		_oShadowSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite('shadow'));
+		_oShadowSprite = createBitmap(s_oSpriteLibrary.getSprite('shadow'));
 		_oShadowSprite.regX = SHADOW_WIDTH/2;
 		_oShadowSprite.regY = SHADOW_HEIGHT/2;
 		_oShadowSprite.x = _oSprite.x;
 		_oShadowSprite.y = CANVAS_HEIGHT - BALL_BOUNCE_YOFFSET;
 		_oShadowSprite.alpha = 0.65;
 
-		_oHitSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite('ball_hit'));
+		_oHitSprite = createBitmap(s_oSpriteLibrary.getSprite('ball_hit'));
 		_oHitSprite.regX = BALL_SIZE/2;
 		_oHitSprite.regY = BALL_SIZE/2;
 		_oHitSprite.x = CANVAS_WIDTH/2;

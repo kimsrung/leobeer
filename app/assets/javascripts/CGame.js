@@ -4,13 +4,16 @@ function CGame(bChallengeMode){
     var _fGravityIncrease;
     var _iScore = 0;
     var _iHiScore = 0;
+    var _iTimeElaps;
 
     var _oBall;
     var _oInterface;
     var _oPlayer;
+    var _oEndPanel;
     
     this._init = function(bChallengeMode){
         _bChallengeMode = bChallengeMode;
+        _iTimeElaps = TIME_GAME;
 
         _oPlayer = new CPlayer();
 
@@ -24,15 +27,27 @@ function CGame(bChallengeMode){
             _oInterface = new CInterface(this,_bChallengeMode);
             _oBall = new CBall(this);
         };
+        
+        _oEndPanel = new CEndPanel(s_oSpriteLibrary.getSprite('panel'));
+        
+        $(s_oMain).trigger("start_level",1);
     };
 
     this.unload = function(){
+		$(s_oMain).trigger("end_level",1);
         _oBall.unload();
-
+        s_oGame = null;
+        
+        s_oStage.removeAllChildren();
+        
         s_oMain.gotoMenu();
     };
 	
     this.update = function(){
+        if(s_bClickBall === false){
+            return;
+        }
+        
         if(_oBall.checkEdges()){
             if (_iScore !== 0) {
                 _oInterface.updateScore(0, Math.floor(_iHiScore*100)/100);
@@ -50,8 +65,24 @@ function CGame(bChallengeMode){
                     }
                 }
                 
-            };
-        };
+            }
+
+        }
+
+        if(s_bClickBall){
+            _iTimeElaps -= s_iTimeElaps;
+            if(_iTimeElaps < 0){
+                    s_bClickBall = false;
+                    _oEndPanel.show(Math.floor(_iHiScore*100)/100,_bChallengeMode);
+                    $(s_oMain).trigger("end_level",1);
+            }else{
+                _oInterface.refreshTime(formatTime(_iTimeElaps)); 
+            }
+
+            
+        }else{
+            _oInterface.refreshTime(formatTime(0)); 
+        }
 
         _oBall.update();
         s_oStage.update();
@@ -73,7 +104,6 @@ function CGame(bChallengeMode){
         
         if (_iScore > _iHiScore) { 
             _iHiScore = _iScore;
-			$(s_oMain).trigger("new_highscore",_iHiScore);
         };
 
         _oInterface.updateScore(Math.floor(_iScore*100)/100, Math.floor(_iHiScore*100)/100);
@@ -83,5 +113,11 @@ function CGame(bChallengeMode){
         _oPlayer.display(posX,posY);
     };
     
+    s_oGame = this;
+    s_bClickBall = true;
+	
     this._init(bChallengeMode);
 }
+
+var s_bClickBall = true;
+var s_oGame = null;

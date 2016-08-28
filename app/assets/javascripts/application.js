@@ -14,3 +14,4 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= load-image.all.min
+

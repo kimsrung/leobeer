@@ -15,16 +15,16 @@ function CToggle(iXPos,iYPos,oSprite){
                    };
                    
          var oSpriteSheet = new createjs.SpriteSheet(oData);
-         
+
          if(s_bAudioActive){
-            _oButton = new createjs.Sprite(oSpriteSheet, "on");
+            _oButton = createSprite(oSpriteSheet, "on",(oSprite.width/2)/2,oSprite.height/2,oSprite.width/2,oSprite.height);
          }else{
-             _oButton = new createjs.Sprite(oSpriteSheet, "off");
+             _oButton = createSprite(oSpriteSheet, "off",(oSprite.width/2)/2,oSprite.height/2,oSprite.width/2,oSprite.height);
          }
         _oButton.x = iXPos;
         _oButton.y = iYPos; 
         _oButton.stop();
-        
+        _oButton.cursor = "pointer";
         s_oStage.addChild(_oButton);
         
         this._initListener();
@@ -74,6 +74,11 @@ function CToggle(iXPos,iYPos,oSprite){
        if(_aCbCompleted[ON_MOUSE_DOWN]){
            _aCbCompleted[ON_MOUSE_DOWN].call(_aCbOwner[ON_MOUSE_DOWN]);
        }
+    };
+    
+    this.setPosition = function(iX,iY){
+        _oButton.x = iX;
+        _oButton.y = iY;
     };
     
     this._init(iXPos,iYPos,oSprite);

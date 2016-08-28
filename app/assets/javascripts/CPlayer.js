@@ -10,7 +10,7 @@ CPlayer = function(){
 			var iX, iY, iToX, iToY;
 
 			if (posy >= 8*CANVAS_HEIGHT/10) { // was 6
-				_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite("player_1"));
+				_oSprite = createBitmap(s_oSpriteLibrary.getSprite("player_1"));
 				_oSprite.regX = 16;
 				_oSprite.regY = 720;
 				_oSprite.alpha = 0;				
@@ -26,7 +26,7 @@ CPlayer = function(){
 					iToX = posx;
 				};	
 			} else if (posy >= 7*CANVAS_HEIGHT/10) { // was 5
-				_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite("player_2"));
+				_oSprite = createBitmap(s_oSpriteLibrary.getSprite("player_2"));
 				_oSprite.regX = 28;
 				_oSprite.regY = 675;
 				_oSprite.alpha = 0;
@@ -42,7 +42,7 @@ CPlayer = function(){
 					iToX = posx;
 				};	
 			} else if (posy >= 6*CANVAS_HEIGHT/10) {
-				_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite("player_4"));
+				_oSprite = createBitmap(s_oSpriteLibrary.getSprite("player_4"));
 				_oSprite.regX = 440;
 				_oSprite.regY = 410;
 				_oSprite.alpha = 0;
@@ -58,7 +58,7 @@ CPlayer = function(){
 					_oSprite.scaleX = -1;
 				};	
 			} else if (posy >= 4*CANVAS_HEIGHT/10) {
-				_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite("player_3"));
+				_oSprite = createBitmap(s_oSpriteLibrary.getSprite("player_3"));
 				_oSprite.regX = 51;
 				_oSprite.regY = 358;
 				_oSprite.alpha = 0;
@@ -74,7 +74,7 @@ CPlayer = function(){
 					iToX = posx;
 				};	
 			} else if (posy >= 3*CANVAS_HEIGHT/10) {
-				_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite("player_5"));
+				_oSprite = createBitmap(s_oSpriteLibrary.getSprite("player_5"));
 				_oSprite.regX = 196;
 				_oSprite.regY = 132;
 				_oSprite.alpha = 0;
@@ -90,7 +90,7 @@ CPlayer = function(){
 					_oSprite.scaleX = -1;
 				};	
 			} else if (posy >= 0*3*CANVAS_HEIGHT/10) { // posy >= 0*CANVAS_HEIGHT/6
-				_oSprite = new createjs.Bitmap(s_oSpriteLibrary.getSprite("player_7"));
+				_oSprite = createBitmap(s_oSpriteLibrary.getSprite("player_7"));
 				_oSprite.regX = 229;
 				_oSprite.regY = 3;
 				_oSprite.alpha = 0;

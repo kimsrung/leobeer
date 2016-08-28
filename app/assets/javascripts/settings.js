@@ -1,7 +1,11 @@
 var CANVAS_WIDTH = 768;
-var CANVAS_HEIGHT = 1024;
+var CANVAS_HEIGHT = 1152;
 
-var DISABLE_SOUND_MOBILE = true;
+var EDGEBOARD_X = 20;
+var EDGEBOARD_Y = 110;
+
+var DISABLE_SOUND_MOBILE = false;
+var FONT_GAME = "arialbold";
 
 var STATE_LOADING = 0;
 var STATE_MENU    = 1;
@@ -16,9 +20,10 @@ var ON_DRAG_START  = 4;
 var ON_DRAG_END    = 5;
 
 var BALL_SIZE = 150; //  sprite diameter in pixels
-var BALL_BOUNCE_YOFFSET = 100;
+var BALL_BOUNCE_YOFFSET = 150;
 var SHADOW_WIDTH = 150;
 var SHADOW_HEIGHT = 64;
+var TIME_GAME;
 
 // NORMAL MODE CONSTANTS
 var INIT_GRAVITY_NORMAL,
