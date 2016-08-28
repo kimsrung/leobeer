@@ -1,0 +1,214 @@
+:javascript
+  $(document).ready(function(){
+        var image_uploaded_path = '';
+
+        $("#file").hide();
+
+        $("#blank_picture, #label, #my_image").click(function(){
+          $("#file").click();
+        });
+
+        var image_url = '#{@image_url}';
+        if( image_url){
+          $("#sample").attr("src", image_url);
+          image_uploaded_path = '#{@image_path}';
+          console.log($('#file'));
+        }
+          
+
+        var orientation = 1;
+
+        $('#file').change(function(e) {
+            
+            console.log($('#file'));
+            var file = e.target.files[0],
+                imageType = /image.*/;
+            
+            if (!file.type.match(imageType))
+                return;
+            
+            // loadImage.parseMetaData(file, function (data) {
+            //   if (data.exif) {
+            //    console.log('orientation');
+            //     orientation = data.exif.get('Orientation');
+            //     console.log(orientation);
+            //   }
+            // })
+
+
+            // var reader = new FileReader();
+            // reader.onload = fileOnload;
+            // reader.readAsDataURL(file);
+
+
+            var formData = new FormData($('#new_stamp')[0]);
+            $.ajax({
+                url: '/stamps/upload',  //Server script to process data
+                type: 'POST',
+                dataType: "json",
+                xhr: function() {  // Custom XMLHttpRequest
+                    var myXhr = $.ajaxSettings.xhr();
+                    if(myXhr.upload){ // Check if upload property exists
+                        myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+                    }
+                    return myXhr;
+                },
+                
+                // Form data
+                data: formData,
+                //Options to tell jQuery not to process data or worry about content-type.
+                cache: false,
+                contentType: false,
+                processData: false,
+                success : handleData
+            });
+            
+        });
+
+        function handleData(data) {
+          console.log("image uploaded");
+          image_uploaded_path = data.image_uploaded_path
+          console.log(image_uploaded_path);
+          var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
+          console.log("new src");
+          console.log(src)
+          $('#sample').attr("src", src );
+          $('#sample').show();
+          $('#progress').text('រួចរាល់!');
+
+        }
+
+        function progressHandlingFunction(e){
+            if(e.lengthComputable){
+                $('#progress').text('កំពុងដំនើរការ... ' + Math.ceil(e.loaded*100/e.total)+ '%');
+            }
+        }
+
+        
+        function fileOnload(e) {
+            var $img = $('<img>', { src: e.target.result});
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            
+            ctx.save();
+
+            $img.load(function() {
+                
+                switch(orientation){
+                  case 2:
+                      // horizontal flip
+                      ctx.translate(canvas.width, 0);
+                      ctx.scale(-1, 1);
+                      break;
+                  case 3:
+                      // 180° rotate left
+                      ctx.translate(canvas.width, canvas.height);
+                      ctx.rotate(Math.PI);
+                      break;
+                  case 4:
+                      // vertical flip
+                      ctx.translate(0, canvas.height);
+                      ctx.scale(1, -1);
+                      break;
+                  case 5:
+                      // vertical flip + 90 rotate right
+                      ctx.rotate(0.5 * Math.PI);
+                      ctx.scale(1, -1);
+                      break;
+                  case 6:
+                      // 90° rotate right
+                      console.log("enter here 6");
+                      
+                      ctx.rotate(0.5 * Math.PI);
+                      ctx.translate(0, -canvas.height);
+                      break;
+                  case 7:
+                      // horizontal flip + 90 rotate right
+                      ctx.rotate(0.5 * Math.PI);
+                      ctx.translate(canvas.width, -canvas.height);
+                      ctx.scale(-1, 1);
+                      break;
+                  case 8:
+                      // 90° rotate left
+                      ctx.rotate(-0.5 * Math.PI);
+                      ctx.translate(-canvas.width, 0);
+                      break;
+              }
+              
+              ctx.drawImage(this, 0, 0, 400, 400);
+              ctx.restore();  
+              orientation = 1
+
+              $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
+              $filter.load(function() {
+                  ctx.drawImage(this, 0, 0, 400, 400);
+              });
+
+            });
+
+          
+        }
+
+
+        function dlCanvas() {
+          if (image_uploaded_path && image_uploaded_path.length > 0){
+            dt = "#{request.protocol}#{request.host}" + "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path; 
+            console.log(dt);
+            $("#dl").attr('href', dt);
+          }
+        };
+        document.getElementById("dl").addEventListener('click', dlCanvas, false);
+  });
+
+#sth{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 20px 0 !important;  overflow: visible; font-family: 'Kantumruy-Regular' ;"}
+  
+  #main_content.container
+    .row
+      .col-md-12.text-center
+        .text-uppercase{style: "font-size: 16px; color: white; font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព  Profile  ស្មើនឹងការចូលរួមជាមួយ  CLEAR  1 សំលេង
+    
+    .row{style: "margin-top: 20px;"}
+      .col-md-6.col-md-offset-3{id: "my_image"}
+        - if !@image_url.present?    
+          = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
+        - else
+          = image_tag @image_url, id: "sample"
+    
+    
+    = form_for @stamp do |f|
+      .field.row
+        .col-md-12.text-center
+          %br
+          = f.label :image, "ចុចត្រង់នេះដើម្បីផ្លាស់ប្តូររូបភាព", style: "display: inline-block; color: white;", id: "label"
+          
+          = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
+          %p{id: "progress", style: "color: white; font-size:10px; font-family: 'Kantumruy-Regular' ;"} (សូមរងចាំ  2~3 វិនាទីដើម្បីអោយរូបភាពអ្នកផ្លាស់ប្តូរ)
+          = image_tag "", id: "blah", width: 200, height:200
+          = f.file_field :image, id: "file"
+          
+        %br
+        %br
+      .actions.text-center
+        %a.btn.btn-lg{id:"dl", download: "clear_cambodia.png", href: "", style: "background-color: #121b4d; text-decoration: none; color:white;"}
+          ទាញយករូបភាពនេះ
+        
+    %br
+
+    .row
+      .col-md-12.text-center{style: "color:white; font-size: 14px; font-family: 'Kantumruy-Regular'  "}
+        %p សូមចុច  Download និង Save រូបភាពនេះចូលទៅក្នុងកុំព្យូទ័រ រឺទូរស័ព្ទដៃដើម្បីយក វាទៅដាក់ជារូបភាព Profile នៅលើ Facebook របស់អ្នកជាមួយ #wesupportcambodia
+    
+    %br
+    %br
+    .row
+      .col-md-4
+      .col-md-4
+        %a{href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.clearantidandruffcambodia.com%2F&amp;src=sdkpreparse", target: "blank", style: "text-decoration: none; font-family: 'Kantumruy-Regular';"}
+          .div{style: "background-color: #121b4d;"}
+            = image_tag asset_path("fb.png"), size: "13x25", style:"display: inline; margin: 10px; margin-right:33px; margin-left:10px;"
+            = image_tag asset_path("line.png"), size: "1x1", style:"display: inline; margin-left: -5px;"
+            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 13px; margin-left:50px;"} ចែករំលែកលើ FACEBOOK
+    %br
+    %br
+    = render 'layouts/footer'
+
