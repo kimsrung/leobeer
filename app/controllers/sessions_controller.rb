@@ -3,7 +3,13 @@ class SessionsController < ApplicationController
     user = User.from_omniauth(env["omniauth.auth"])
     session[:user_id] = user.id
     #redirect_to stamp_path(1), image_url: "https://graph.facebook.com/#{user.id}?fields=picture.width(500).height(500)"
-    redirect_to controller: 'stamps', action: 'show', id: user.uid
+    
+    pr = request.env["omniauth.params"]
+    if pr["play"].present?
+      redirect_to controller: 'visitors', action: 'kickup'
+    else
+      redirect_to controller: 'stamps', action: 'show', id: user.uid
+    end
   end
 
   def destroy

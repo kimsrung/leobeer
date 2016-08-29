@@ -1,22 +1,22 @@
 %div{style: "background: url('#{asset_path 'bg.png'}') top center no-repeat; background-size: 100% 100%; margin: 0 0 100 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
 	%br
-	
-	.container{style: "margin: 85px 0 0 0;color:white;"}	
-		%h4 លទ្ធផលរបស់អ្នក
-		.row
-			.col-md-12
-				%table{style: "width: 100%;"}
-					%tr{style: "padding: 10px;"}
-						%th{style: "padding: 10px; background-color: red; cellpadding: 10px;"} លេខរៀង	
-						%th{style: "padding: 10px; background-color: red; cellpadding: 10px;"} ពិន្ទុខ្ពស់បំផុត
-					%tr{style: " color: black;"}
-						%td{style: "padding: 10px; background-color: rgba(255,255,255, 0.7);"}
-							= @position
-						%td{style: "padding: 10px; background-color: rgba(255,255,255, 0.7);"}
-							= @user.score
+	- if current_user.present?
+		.container{style: "margin: 85px 0 0 0;color:white;"}	
+			%h4 លទ្ធផលរបស់អ្នក
+			.row
+				.col-md-12
+					%table{style: "width: 100%;"}
+						%tr{style: "padding: 10px;"}
+							%th{style: "padding: 10px; background-color: red; cellpadding: 10px;"} លេខរៀង	
+							%th{style: "padding: 10px; background-color: red; cellpadding: 10px;"} ពិន្ទុខ្ពស់បំផុត
+						%tr{style: " color: black;"}
+							%td{style: "padding: 10px; background-color: rgba(255,255,255, 0.7);"}
+								= @position
+							%td{style: "padding: 10px; background-color: rgba(255,255,255, 0.7);"}
+								= @user.score
 
 
-		
+	%br	
 	.container{style: "margin-top: 20px; color: white;"}	
 		%h4 អ្នកពិន្ទុខ្ពស់ដំបូងទាំង10
 		%br

@@ -1,6 +1,9 @@
 class VisitorsController < ApplicationController
 
 	def kickup
+		if !current_user.present?
+			return redirect_to '/auth/facebook?play=1'
+		end	
 		#render :layout => false    
 	end
 
