@@ -33,7 +33,7 @@
     :javascript
       $(document).ready(function(){
                      var oMain = new CMain({
-                            time_game:60000, //LEVEL TIME
+                            time_game:10000, //LEVEL TIME
                             
                             // Normal mode parameters:
                             gravity: 3.5,
@@ -68,13 +68,16 @@
                            if(getParamValue('ctl-arcade') === "true"){
                                parent.__ctlArcadeEndSession();
                            }
-                           //...ADD YOUR CODE HERE EVENTUALLY
+                           
                     });
 
                     $(oMain).on("save_score", function(evt,iScore, szMode) {
                            if(getParamValue('ctl-arcade') === "true"){
                                parent.__ctlArcadeSaveScore({score:iScore, mode: szMode});
                            }
+                           $.post("/users/score", {score: iScore}, function(data, status){
+                              alert("Data: " + data + "\nStatus: " + status);
+                          });
                     });
 
                     $(oMain).on("start_level", function(evt,iLevel) {

@@ -14,6 +14,12 @@ Rails.application.routes.draw do
   	end
   end
 
+  resources :users, only: [:index] do 
+    collection do 
+      post 'score'
+    end
+  end
+
   namespace :admin do 
     resources :transactions do 
 

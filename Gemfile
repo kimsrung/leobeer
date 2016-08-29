@@ -14,6 +14,7 @@ gem 'social-share-button', '~> 0.1.6'
 
 gem 'omniauth-facebook'
 gem 'rest-client'
+gem 'ranked-model'
 
 group :development, :test do
   gem 'byebug'

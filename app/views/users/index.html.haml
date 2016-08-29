@@ -1,0 +1,59 @@
+%div{style: "background: url('#{asset_path 'bg.png'}') top center no-repeat; background-size: 100%; margin: 0 0 100 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
+	%br
+	%br
+	%br
+
+	.container{style: "margin-top: 50px; color: white;"}	
+		%h3 លទ្ធផលរបស់អ្នក
+		%br		
+		%table{style: "width: 49%;"}
+			%tr
+				%th.text-center{style: "width:3%; background-color:#121b4d; padding: 10px; "} Rank
+				%th{style: "width: 1%;"}
+				%th{style: "width:30%; padding: 10px; color:black; font-size: 16px;background-color: rgba(255,255,255, 0.5);"} Name
+				%th{style: "width: 1%;"}
+				%td.text-center{style: "width:7%; background-color:#121b4d; padding: 10px; "} Score
+				%th{style: "width: 1%;"}
+			%tr
+				%td.text-center{style: "width:3%; background-color:#121b4d; padding: 10px; "}= @position
+				%td{style: "width: 1%;"}
+				%td{style: "width:30%; padding: 10px; color:black; font-size: 16px;background-color: rgba(255,255,255, 0.5);"}= @user.name
+				%td{style: "width: 1%;"}
+				%td.text-center{style: "width:7%; background-color:#121b4d; padding: 10px; "}= @user.score
+				%td{style: "width: 1%;"}
+
+		
+	.container{style: "margin-top: 20px; color: white;"}	
+		%h3 អ្នកពិន្ទុខ្ពស់ដំបូងទាំង10
+		%br
+		%table{style: "width: 100%;"}
+			%tr
+				%th.text-center{style: "width:3%; background-color:#121b4d; padding: 10px; "} Rank
+				%th{style: "width: 1%;"}
+				%th{style: "width:40%; padding: 10px; color:black; font-size: 16px;background-color: rgba(255,255,255, 0.5);"} Name
+				%th{style: "width: 1%;"}
+				%td.text-center{style: "width:7%; background-color:#121b4d; padding: 10px; "} Score
+				%th{style: "width: 5%;"}
+				%th.text-center{style: "width:3%; background-color:#121b4d; padding: 10px; "} Rank
+				%th{style: "width: 1%;"}
+				%th{style: "width:40%; padding: 10px; color:black; font-size: 16px;background-color: rgba(255,255,255, 0.5);"} Name
+				%th{style: "width: 1%;"}
+				%th.text-center{style: "width:7%; background-color:#121b4d; padding: 10px; "} Score
+			- @users.each.with_index do |user, i|
+				- if (i%2 ==0)
+					%tr{style: "height: 10px"}
+					%tr
+				- else
+					%td
+				%td.text-center{style: "width:3%; background-color:#121b4d; padding: 10px; "}= (i+1)
+				%td{style: "width: 1%;"}
+				%td{style: "width: 40%; padding: 10px; color:black; font-size: 16px;background-color: rgba(255,255,255, 0.5);"}= user.name
+				%td{style: "width: 1%;"}
+				%td.text-center{style: "width:7%; background-color:#121b4d; padding: 10px; "}= user.score
+	
+
+	.container
+		%br
+		%br
+		%br
+		= render "layouts/footer"
