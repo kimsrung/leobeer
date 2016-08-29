@@ -28,7 +28,7 @@ input, input:before, input:after {
 ::-moz-selection { background: transparent;color:inherit; }
 
 #canvas{
-    /*position: fixed; */
+    position: fixed; 
 }
 
 canvas {

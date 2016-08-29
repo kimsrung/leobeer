@@ -75,8 +75,8 @@
                            if(getParamValue('ctl-arcade') === "true"){
                                parent.__ctlArcadeSaveScore({score:iScore, mode: szMode});
                            }
-                           $.post("/users/score", {score: iScore}, function(data, status){
-                              alert("Data: " + data + "\nStatus: " + status);
+                           $.post("/users/score", {score: iScore*100}, function(data, status){
+                              
                           });
                     });
 
