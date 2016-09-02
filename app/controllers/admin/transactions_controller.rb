@@ -3,7 +3,7 @@ class Admin::TransactionsController < ApplicationController
 
 	def authenticate
 	  authenticate_or_request_with_http_basic do |username, password|
-	    username == "mech" && password == "mech"
+	    username == "admin" && password == "clearmenxyz"
 	  end
 	end
 
@@ -14,7 +14,9 @@ class Admin::TransactionsController < ApplicationController
 
 	def create
 		@transaction = Transaction.create(transaction_params)
-		render :show
+		@transactions = Transaction.all
+		@total_points = Transaction.sum(:points)
+		render :index
 	end
 
 	def update

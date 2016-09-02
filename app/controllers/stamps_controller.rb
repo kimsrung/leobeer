@@ -19,6 +19,7 @@ class StampsController < ApplicationController
       @stamp.remote_image_url = fb_url
       @image_url = "#{request.protocol}#{request.host}"+ @stamp.image.thumb.to_s
       @image_path = @stamp.image.thumb.to_s
+      transaction = Transaction.create(user_id: user.id, points: 1)
     end
 
   end

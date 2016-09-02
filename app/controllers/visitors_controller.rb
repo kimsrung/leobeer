@@ -16,6 +16,9 @@ class VisitorsController < ApplicationController
 	end
 
 	def index
+		score = Transaction.sum(:points)
+		@score_string = score.to_s.rjust(7, '0')
+		
 		respond_to do |format|
       format.html
       format.mobile
