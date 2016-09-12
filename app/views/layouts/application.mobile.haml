@@ -12,7 +12,9 @@
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
+    = render 'layouts/google_analytic'
   %body
+    = render 'layouts/google_analytic_pageview'
     %header
       = render 'layouts/navigation'
     
