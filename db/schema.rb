@@ -36,10 +36,10 @@ ActiveRecord::Schema.define(version: 20160829013511) do
     t.string   "oauth_token"
     t.string   "email"
     t.datetime "oauth_expires_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.string   "image_url"
-    t.integer  "score"
+    t.integer  "score",            default: 0
   end
 
 end

@@ -1,4 +1,44 @@
 :javascript
+  // 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
+
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  // 3. This function creates an <iframe> (and YouTube player)
+  //    after the API code downloads.
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      width: '100%',
+      videoId: 'rWnO8YyDrzA',
+      playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0 },
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // 4. The API will call this function when the video player is ready.
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  // 5. The API calls this function when the player's state changes.
+  //    The function indicates that when playing a video (state=1),
+  //    the player should play for six seconds and then stop.
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      //setTimeout(stopVideo, 6000);
+      done = true;
+    }
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
   $(document).ready(function(){
         var image_uploaded_path = '';
 
@@ -14,19 +54,19 @@
           image_uploaded_path = '#{@image_path}';
           console.log($('#file'));
         }
-          
+
 
         var orientation = 1;
 
         $('#file').change(function(e) {
-            
+
             console.log($('#file'));
             var file = e.target.files[0],
                 imageType = /image.*/;
-            
+
             if (!file.type.match(imageType))
                 return;
-            
+
             // loadImage.parseMetaData(file, function (data) {
             //   if (data.exif) {
             //    console.log('orientation');
@@ -53,7 +93,7 @@
                     }
                     return myXhr;
                 },
-                
+
                 // Form data
                 data: formData,
                 //Options to tell jQuery not to process data or worry about content-type.
@@ -62,7 +102,7 @@
                 processData: false,
                 success : handleData
             });
-            
+
         });
 
         function handleData(data) {
@@ -84,16 +124,16 @@
             }
         }
 
-        
+
         function fileOnload(e) {
             var $img = $('<img>', { src: e.target.result});
             var canvas = document.getElementById('canvas');
             var ctx = canvas.getContext('2d');
-            
+
             ctx.save();
 
             $img.load(function() {
-                
+
                 switch(orientation){
                   case 2:
                       // horizontal flip
@@ -118,7 +158,7 @@
                   case 6:
                       // 90° rotate right
                       console.log("enter here 6");
-                      
+
                       ctx.rotate(0.5 * Math.PI);
                       ctx.translate(0, -canvas.height);
                       break;
@@ -134,9 +174,9 @@
                       ctx.translate(-canvas.width, 0);
                       break;
               }
-              
+
               ctx.drawImage(this, 0, 0, 400, 400);
-              ctx.restore();  
+              ctx.restore();
               orientation = 1
 
               $filter = $('<img>', { src: "#{asset_path('BlueFilterAndLogo.png')}"});
@@ -146,13 +186,13 @@
 
             });
 
-          
+
         }
 
 
         function dlCanvas() {
           if (image_uploaded_path && image_uploaded_path.length > 0){
-            dt = "#{request.protocol}#{request.host}" + "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path; 
+            dt = "#{request.protocol}#{request.host}" + "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path;
             console.log(dt);
             $("#dl").attr('href', dt);
           }
@@ -160,55 +200,57 @@
         document.getElementById("dl").addEventListener('click', dlCanvas, false);
   });
 
-#sth{style: "background-color: black; background-size: 100% 100%; margin: 0 0 0 0 !important; padding: 0 0 20px 0 !important;  overflow: visible; font-family: 'Kantumruy-Regular' ;"}
-  
+#sth{style: "background-color: #a4a2a5; background-size: 100%; margin: 0 0 100 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
   #main_content.container
+    .row{style: " color: white; font-size: 18px; font-family: 'Koulen'; margin-bottom:30px;"}
+      .col-md-12.text-center.text-uppercase
+        %div
+          %span{style: "font-size: 32px; font-family: 'Oswald-Bold'; line-height: 70px;"}  ប្តូររូបភាព
+          %span{style: "font-size: 26px;display: inline-block;; font-family: 'Oswald-Regular'; margin-top: 20px;"}  PROFILE FACEBOOK
+        %p{style: "font-size:20px; font-family: 'Oswald-Bold'; "} ចែករំលែកក្តីស្រលាញ់ជាមួយក្រវិលកំប៉ុងរបស់អ្នក
     .row
-      .col-md-12.text-center
-        .text-uppercase{style: "font-size: 16px; color: white; font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព  Profile  ស្មើនឹងការចូលរួមជាមួយ  CLEAR  1 សំឡេង
-    
-    .row{style: "margin-top: 20px;"}
-      .col-md-6.col-md-offset-3{id: "my_image"}
-        - if !@image_url.present?    
-          = image_tag asset_path("BlueFilterAndLogo.png"), id: "sample"
-        - else
-          = image_tag @image_url, id: "sample"
-    
-    
-    = form_for @stamp do |f|
-      .field.row
-        .col-md-12.text-center
-          %br
-          = f.label :image, "ចុចត្រង់នេះដើម្បីផ្លាស់ប្តូររូបភាព", style: "display: inline-block; color: white;", id: "label"
-          
-          = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
-          %p{id: "progress", style: "color: white; font-size:10px; font-family: 'Kantumruy-Regular' ;"} (សូមរងចាំ  2~3 វិនាទីដើម្បីអោយរូបភាពអ្នកផ្លាស់ប្តូរ)
-          = image_tag "", id: "blah", width: 200, height:200
-          = f.file_field :image, id: "file"
-          
-        %br
-        %br
-      .actions.text-center
-        %a.btn.btn-lg{id:"dl", download: "clear_cambodia.png", href: "", style: "background-color: #121b4d; text-decoration: none; color:white;"}
-          ទាញយករូបភាពនេះ
-        
-    %br
+      .col-md-12{ style: "margin: 16px 0;"}
+        = image_tag asset_path("tem_profile.png")
 
+    = form_for @stamp do |f|
+      .row{style: "margin-bottom: 20px"}
+        .col-md-12.text-center
+          %span{style: "border: 1px solid #eee; padding: 6px 25px;border-radius: 5px; display: inline-block"}
+            = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
+            = f.label :image, "Change Picture", style: "margin-left: 10px; color: white;", id: "label"
+
+            = f.file_field :image, id: "file", style: "display:none"
+
+
+    .row{style: "margin-bottom: 20px"}
+      .col-md-3
+      .col-md-6.text-center
+        %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
+          %span{style: "background-color: #f71025;padding: 10px 50px;display: inline-block;color: #fff;width: 100%;"}
+            %span{style:"font-size: 20px;font-family: 'Oswald-Regular' "} DOWNLOAD
+            %span{style:"font-size: 20px;font-family: 'Oswald-Regular' "} រូបភាព
+
+    .row{style: "color: white; font-size: 18px; font-family: 'Oswald-light'; margin-bottom:30px;"}
+      .col-md-12.text-center
+        %p.text-uppercase
+          ចុចលើ
+          %span{style: 'font-size: 16px;margin-top: 3px;display: inline-block;'} DOWNLOAD
+          រូបភាព ដើម្បីទាញយករូបភាពខាងលើ
+        %p
+          សម្រាប់ធ្វើជារូបភាព
+          %span{style: 'font-size: 16px;margin-top: 3px;display: inline-block;'}Profile FACEBOOK
+          ថ្មីរបស់លោកអ្នក
+        %p ដើម្បីចែករំលែកក្តីស្រលាញ់ និងគាំទ្រសកម្មភាពនេះ
+        %p ជាមួយស្រាបៀ លីអូ
+
+
+    #video
     .row
-      .col-md-12.text-center{style: "color:white; font-size: 14px; font-family: 'Kantumruy-Regular'  "}
-        %p សូមចុច  Download និង Save រូបភាពនេះចូលទៅក្នុងកុំព្យូទ័រ រឺទូរស័ព្ទដៃដើម្បីយក វាទៅដាក់ជារូបភាព Profile នៅលើ Facebook របស់អ្នកជាមួយ #wesupportcambodia
-    
-    %br
-    %br
-    .row
-      .col-md-4
-      .col-md-4
-        %a{href: "https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.clearantidandruffcambodia.com%2F&amp;src=sdkpreparse", target: "blank", style: "text-decoration: none; font-family: 'Kantumruy-Regular';"}
-          .div{style: "background-color: #121b4d;"}
-            = image_tag asset_path("fb.png"), size: "13x25", style:"display: inline; margin: 10px; margin-right:33px; margin-left:10px;"
-            = image_tag asset_path("line.png"), size: "1x1", style:"display: inline; margin-left: -5px;"
-            %p{style:"display: inline-block; color: white; font-size: 17px; margin-top: 13px; margin-left:50px;"} ចែករំលែកលើ FACEBOOK
-    %br
-    %br
+      .col-md-1
+      .col-md-10
+        /%iframe{width: "100%", height: "600", src: "https://www.youtube.com/embed/p-pww2lDFGQ?autoplay=1"}
+        #player
+      .col-md-1
+
     = render 'layouts/footer'
 

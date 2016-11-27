@@ -3,12 +3,12 @@ class VisitorsController < ApplicationController
 	def kickup
 		if !current_user.present?
 			return redirect_to '/auth/facebook?play=1'
-		end	
-		#render :layout => false    
+		end
+		#render :layout => false
 	end
 
 	def support
-		
+
 	end
 
 	def upload
@@ -16,14 +16,13 @@ class VisitorsController < ApplicationController
 	end
 
 	def index
-		score = Transaction.sum(:points)
-		@score_string = score.to_s.rjust(7, '0')
-		
+		@stamp = Stamp.new
+
 		respond_to do |format|
       format.html
       format.mobile
     end
 	end
 
-	
+
 end

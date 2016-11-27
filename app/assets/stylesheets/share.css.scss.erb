@@ -1,4 +1,6 @@
-$blue: #121b4d;
+$red: #f71025;
+$gray: #a4a2a5;
+
 @font-face {
   font-family: "Kantumruy-Light";
   src: url("<%= asset_path('Kantumruy-Light.ttf')%>") format("truetype");
@@ -30,8 +32,9 @@ body {
     bgcolor: black;
 }
 
-.navbar-inverse{
-	background-color: $blue !important;
+.navbar.navbar-inverse.navbar-fixed-top{
+  border-color: $gray;
+	background-color: $red;
 }
 .navbar-nav {
 	margin-top: 0 !important;
@@ -49,11 +52,19 @@ body {
 footer {
     padding: 30px 0;
 }
-
+.nav.navbar-nav.menu > li> a {
+  color: #ffd1d9;
+}
+.navbar-inverse.navbar-fixed-top .navbar-toggle {
+  border-color: $gray;
+}
+.navbar-inverse.navbar-fixed-top .navbar-toggle:hover, .navbar-inverse.navbar-fixed-top .navbar-toggle:focus {
+  background-color: $gray;
+}
 
 @media(min-width:768px) {
     body {
-        
+
     }
 
     .navbar-fixed-top, .navbar-brand .navbar-nav {
@@ -70,10 +81,10 @@ footer {
 .menu {
 	a {
 		text-decoration: none;
-		color: white;	
+		color: white;
 		font-size: 16px;
 	}
-	background-color: $blue;
+	background-color: $red;
 }
 
 #main_content {
@@ -85,33 +96,6 @@ footer {
 		font-weight: bold;
 	}
 
-	.score{
-		float: left;
-		color: white;
-		font-size: 36px;
-		background: url("<%= asset_path('score.png')%>");
-		margin: 1px;
-		padding-top: 25px;
-		text-align: center;
-	}
-
-	#help-us {
-		color: white;
-		font-size: 13px;
-	}
-
-	.support_box {
-		float:left;
-		display: inline;
-		overflow: none;
-		height: 60px;
-		background-color: $blue;
-	}
-
-	.blue_div{
-		background-color: $blue;
-	}
-
 }
 
 .canvasContainer
@@ -121,7 +105,7 @@ footer {
     right: 0px;
     top: 100px;
     bottom: 100px;
-    
+
     background-color: Black;
 }
 
@@ -131,7 +115,7 @@ footer {
     height: 100%;
     left: 0px;
     top: 0px;
-    
+
 }
 
 .stretch {
