@@ -115,7 +115,8 @@
           $('#sample').attr("src", src );
           $('#sample').show();
           $('#progress').text('រួចរាល់!');
-
+          $("#default_image").addClass('hidden');
+          $("#stamp_image").removeClass('hidden');
         }
 
         function progressHandlingFunction(e){
@@ -222,7 +223,7 @@
         = f.file_field :image, id: "file", style: "display:none"
 
 
-    .row{style: "margin-bottom: 20px"}
+    .row
       .col-md-3
       .col-md-6.text-center
         %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}

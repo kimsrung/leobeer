@@ -11,7 +11,7 @@
         = image_tag asset_path("tem_profile.png"), id: 'sample'
 
     = form_for @stamp do |f|
-      .row
+      .row#default_image
         .col-md-12.text-center
           %span#browse_picture{style: "border: 1px solid #eee; padding: 6px 25px;border-radius: 5px; display: inline-block"}
             = image_tag asset_path("blankpicture.png"), style: "display: inline-block;"
@@ -19,12 +19,21 @@
 
         = f.file_field :image, id: "file", style: "display:none"
 
+      .row#stamp_image.hidden
+        .col-md-3
+        .col-md-6.text-center
+          %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
+            %span{style: "background-color: #f71025;padding: 10px 50px;display: inline-block;color: #fff;width: 100%;"}
+              %span{style:"font-size: 20px;font-family: 'Oswald-Regular' "} DOWNLOAD
+              %span{style:"font-size: 20px;font-family: 'Oswald-Regular' "} រូបភាព
+
 
     %br
     .row
-      .col-md-12.text-center
+      .col-md-3
+      .col-md-6.text-center
         %a{href: "/auth/facebook", style: "text-decoration: none;"}
-          %span{style: "background-color: #f71025;padding: 10px 50px;display: inline-block;color: #fff;"}
+          %span{style: "background-color: #f71025;padding: 10px 50px;display: inline-block;color: #fff;width: 100%;"}
             %span{style:"font-size: 20px;font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព
             %span{style:"font-size: 20px;font-family: 'Kantumruy-Regular' "} PROFILE FACEBOOK
     %br
@@ -107,20 +116,6 @@
             if (!file.type.match(imageType))
                 return;
 
-            // loadImage.parseMetaData(file, function (data) {
-            //   if (data.exif) {
-            //    console.log('orientation');
-            //     orientation = data.exif.get('Orientation');
-            //     console.log(orientation);
-            //   }
-            // })
-
-
-            // var reader = new FileReader();
-            // reader.onload = fileOnload;
-            // reader.readAsDataURL(file);
-
-
             var formData = new FormData($('#new_stamp')[0]);
             $.ajax({
                 url: '/stamps/upload',  //Server script to process data
@@ -150,11 +145,11 @@
           image_uploaded_path = data.image_uploaded_path
           console.log(image_uploaded_path);
           var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
-          console.log("new src");
-          console.log(src)
           $('#sample').attr("src", src );
           $('#sample').show();
           $('#progress').text('រួចរាល់!');
+          $("#default_image").addClass('hidden');
+          $("#stamp_image").removeClass('hidden');
 
         }
 

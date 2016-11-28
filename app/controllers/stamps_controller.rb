@@ -23,13 +23,9 @@ class StampsController < ApplicationController
   end
 
   def upload
-    stamp = Stamp.new(stamp_params)
+    @stamp = Stamp.new(stamp_params)
 
-    if stamp.save
-      return render json: {image_uploaded_path: stamp.image.url(:thumb)}
-    else
-      return render json: {status: 422}
-    end
+    return render json: {image_uploaded_path: @stamp.image.thumb.to_s}
   end
 
   def download
