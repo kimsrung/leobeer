@@ -8,7 +8,7 @@
         %p{style: "font-size:20px; font-family: 'Oswald-Bold'; "} ចែករំលែកក្តីស្រលាញ់ជាមួយក្រវិលកំប៉ុងរបស់អ្នក
     .row
       .col-md-12{ style: "margin: 16px 0;"}
-        = image_tag asset_path("tem_profile.png"), id: 'sample'
+        = image_tag asset_path("defaultPicture.jpg"), size: '442x447', id: 'sample'
 
     = form_for @stamp do |f|
       .row#default_image
@@ -23,24 +23,23 @@
         .col-md-3
         .col-md-6.text-center
           %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
-            %span{style: "background-color: #f71025;padding: 10px 50px;display: inline-block;color: #fff;width: 100%;"}
-              %span{style:"font-size: 20px;font-family: 'Oswald-Regular' "} DOWNLOAD
-              %span{style:"font-size: 20px;font-family: 'Oswald-Regular' "} រូបភាព
-
+            = image_tag asset_path("downBtn.png")
 
     %br
     .row
       .col-md-3
       .col-md-6.text-center
         %a{href: "/auth/facebook", style: "text-decoration: none;"}
-          %span{style: "background-color: #f71025;padding: 10px 50px;display: inline-block;color: #fff;width: 100%;"}
-            %span{style:"font-size: 20px;font-family: 'Kantumruy-Regular' "} ប្តូររូបភាព
-            %span{style:"font-size: 20px;font-family: 'Kantumruy-Regular' "} PROFILE FACEBOOK
+          = image_tag asset_path("loginFB_btn.png")
+    %br
+    .row
+      .col-md-12{ style: "margin: 16px 0;"}
+        = image_tag asset_path("groupphoto.jpg")
     %br
     #video
     .row
-      .col-md-1
-      .col-md-10
+      .col-md-2
+      .col-md-8
         /%iframe{width: "100%", height: "600", src: "https://www.youtube.com/embed/p-pww2lDFGQ?autoplay=1"}
         #player
       .col-md-1
@@ -61,7 +60,7 @@
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
       width: '100%',
-      videoId: 'rWnO8YyDrzA',
+      videoId: 'K-ld9k_jVmg',
       playerVars: { 'autoplay': 1, 'controls': 0, 'rel': 0 },
       events: {
         'onReady': onPlayerReady,
@@ -144,7 +143,7 @@
           console.log("image uploaded");
           image_uploaded_path = data.image_uploaded_path
           console.log(image_uploaded_path);
-          var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
+          var src = "#{request.protocol}#{request.host}"+":3000"+ image_uploaded_path;
           $('#sample').attr("src", src );
           $('#sample').show();
           $('#progress').text('រួចរាល់!');
