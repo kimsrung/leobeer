@@ -29,7 +29,7 @@ class StampUploader < CarrierWave::Uploader::Base
       # overlay2_path = Rails.public_path.to_s + ActionController::Base.helpers.asset_path("withclear.png").to_s
       # overlay2 = Magick::Image.read(overlay2_path).first
 
-      source = source.resize_to_fill(500, 500)
+      source = source.resize_to_fill(1200, 1200)
       source.composite!(overlay1, 0, 0, Magick::OverCompositeOp)
       # source.composite!(overlay2, 350, 450, Magick::OverCompositeOp)
     end
