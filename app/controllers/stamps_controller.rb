@@ -1,17 +1,16 @@
 class StampsController < ApplicationController
 
 	def create
-    
     @stamp = Stamp.new(stamp_params)
-    @stamp.id = 1
+
     redirect_to stamp_path(@stamp, thumb_image: @stamp.image.thumb)
   end
 
   def show
     @stamp = Stamp.new
-    
+
     user = User.find_by(uid: params[:id])
-    
+
     if user.present?
       fb_url = JSON.parse(
                     RestClient.get("https://graph.facebook.com/#{user.uid}?fields=picture.width(500).height(500)&access_token=#{user.oauth_token}")
@@ -19,15 +18,18 @@ class StampsController < ApplicationController
       @stamp.remote_image_url = fb_url
       @image_url = "#{request.protocol}#{request.host}"+ @stamp.image.thumb.to_s
       @image_path = @stamp.image.thumb.to_s
-      transaction = Transaction.create(user_id: user.id, points: 1)
     end
 
   end
 
   def upload
     stamp = Stamp.new(stamp_params)
-    stamp.id = 1
-    return render json: {image_uploaded_path: stamp.image.thumb.to_s}
+
+    if stamp.save
+      return render json: {image_uploaded_path: stamp.image.url(:thumb)}
+    else
+      return render json: {status: 422}
+    end
   end
 
   def download

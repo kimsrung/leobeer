@@ -4,11 +4,11 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %meta{:content => "http://www.clearantidandruffcambodia.com", :property => "og:url"}/
     %meta{:content => "website", :property => "og:type"}/
-    %meta{:content => "Clear Anti Dandruff Cambodia", :property => "og:title"}/
+    %meta{:content => "LeoBeer Cambodia", :property => "og:title"}/
     %meta{:content => "Best Anti-dandruff Shampoo. Scalp Care Specialists. Clear Cambodia", :property => "og:description"}/
     %meta{:content => "http://www.clearantidandruffcambodia.com" + asset_path("support_cambodia.png"), :property => "og:image"}/
-    %title= content_for?(:title) ? yield(:title) : 'Clear Anti Dandruff Cambodia'
-    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Clearmen'}"}
+    %title= content_for?(:title) ? yield(:title) : 'LeoBeer Cambodia'
+    %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'LeoBeer'}"}
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags
@@ -17,6 +17,6 @@
     = render 'layouts/google_analytic_pageview'
     %header
       = render 'layouts/navigation'
-    
+
     = render 'layouts/messages'
     = yield

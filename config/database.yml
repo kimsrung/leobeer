@@ -16,7 +16,7 @@ development:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: clearmen_development
+  database: leobeer_development
   pool:     5
   username: postgres
   password:
@@ -44,7 +44,7 @@ test:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: clearmen_test
+  database: leobeer_test
   pool:     5
   username: postgres
   password:
@@ -54,7 +54,7 @@ production:
   adapter:  postgresql
   host:     localhost
   encoding: unicode
-  database: clearmen_production
+  database: leobeer_production
   pool:     5
   username: sovanlandypheng
   password:

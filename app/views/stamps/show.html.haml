@@ -44,7 +44,7 @@
 
         $("#file").hide();
 
-        $("#blank_picture, #label, #my_image").click(function(){
+        $("#browse_picture").click(function(){
           $("#file").click();
         });
 
@@ -210,16 +210,16 @@
         %p{style: "font-size:20px; font-family: 'Oswald-Bold'; "} ចែករំលែកក្តីស្រលាញ់ជាមួយក្រវិលកំប៉ុងរបស់អ្នក
     .row
       .col-md-12{ style: "margin: 16px 0;"}
-        = image_tag asset_path("tem_profile.png")
+        = image_tag asset_path("tem_profile.png"), id: 'sample'
 
     = form_for @stamp do |f|
       .row{style: "margin-bottom: 20px"}
         .col-md-12.text-center
-          %span{style: "border: 1px solid #eee; padding: 6px 25px;border-radius: 5px; display: inline-block"}
-            = image_tag asset_path("blankpicture.png"), style: "display: inline-block;", id: "blank_picture"
-            = f.label :image, "Change Picture", style: "margin-left: 10px; color: white;", id: "label"
+          %span#browse_picture{style: "border: 1px solid #eee; padding: 6px 25px;border-radius: 5px; display: inline-block"}
+            = image_tag asset_path("blankpicture.png"), style: "display: inline-block;"
+            = f.label :image, "Change Picture", style: "margin-left: 10px; color: white;"
 
-            = f.file_field :image, id: "file", style: "display:none"
+        = f.file_field :image, id: "file", style: "display:none"
 
 
     .row{style: "margin-bottom: 20px"}

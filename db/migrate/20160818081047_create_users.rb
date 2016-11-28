@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :oauth_token
       t.string :email
+      t.string :image_url
       t.datetime :oauth_expires_at
 
       t.timestamps null: false
