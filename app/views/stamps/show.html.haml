@@ -219,6 +219,7 @@
           %span#browse_picture{style: "border: 1px solid #eee; padding: 6px 25px;border-radius: 5px; display: inline-block"}
             = image_tag asset_path("blankpicture.png"), style: "display: inline-block;"
             = f.label :image, "Change Picture", style: "margin-left: 10px; color: white;"
+          %p{id: "progress", style: "color: white; font-size:10px; font-family: 'Kantumruy-Regular'; margin-top: 5px;"}
 
         = f.file_field :image, id: "file", style: "display:none"
 
