@@ -106,13 +106,13 @@
         });
 
         function handleData(data) {
+          $('#sample').attr("src", src );
+          $('#sample').show();
           setTimeout(function(){
             console.log("image uploaded");
             image_uploaded_path = data.image_uploaded_path
             console.log(image_uploaded_path);
             var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
-            $('#sample').attr("src", src );
-            $('#sample').show();
             $('#progress').text('រួចរាល់!');
             $("#default_image").addClass('hidden');
             $("#stamp_image").removeClass('hidden');
@@ -121,7 +121,7 @@
 
         function progressHandlingFunction(e){
             if(e.lengthComputable){
-                $('#progress').text('កំពុងដំនើរការ... ' + Math.ceil(e.loaded*100/e.total)+ '%');
+                $('#progress').text('កំពុងដំនើរការ... ');
             }
         }
 
