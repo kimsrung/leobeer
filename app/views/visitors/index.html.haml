@@ -13,8 +13,8 @@
         .col-md-3
         .col-md-6.text-center
           = image_tag asset_path("upload.png")
-
       = f.file_field :image, id: "file", style: "display:none"
+
     %br
     .row#stamp_image.hidden
       .col-md-3
@@ -110,7 +110,7 @@
 
             if (!file.type.match(imageType))
                 return;
-
+            $('#sample').attr("src", "#{asset_path('loading.gif')}" );
             var formData = new FormData($('#new_stamp')[0]);
             $.ajax({
                 url: '/stamps/upload',  //Server script to process data
@@ -149,7 +149,7 @@
 
         function progressHandlingFunction(e){
             if(e.lengthComputable){
-              $('#sample').attr("src", "#{asset_path('loading.gif')}" );
+
             }
         }
 
