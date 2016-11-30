@@ -4,11 +4,13 @@
     %meta{:name => "viewport", :content => "width=device-width, initial-scale=1.0"}
     %meta{:content => "http://www.sharethelovewithyourrings.com", :property => "og:url"}/
     %meta{:content => "website", :property => "og:type"}/
-    %meta{:content => "Leo Beer Cambodia", :property => "og:title"}/
+    %meta{:content => "Share the love with your rings", :property => "og:title"}/
     %meta{:content => "Best Drinking Beer in Cambodia", :property => "og:description"}/
-    %meta{:content => "http://www.sharethelovewithyourrings.com" + asset_path("support_cambodia.png"), :property => "og:image"}/
-    %title= content_for?(:title) ? yield(:title) : 'Leo Beer Cambodia'
+    %meta{:content => "http://www.sharethelovewithyourrings.com" + asset_path("icon.png"), :property => "og:image"}/
+    %title= content_for?(:title) ? yield(:title) : 'Share the love with your rings'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'LeoBeer'}"}
+    = favicon_link_tag 'icon.png'
+    = favicon_link_tag 'icon.png', rel: 'apple-touch-icon', type: 'image/png'
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
     = csrf_meta_tags

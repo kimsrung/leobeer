@@ -9,23 +9,20 @@
         = image_tag asset_path("defaultPicture.jpg"), size: '442x447', id: 'sample'
 
     = form_for @stamp do |f|
-      .row#default_image
-        .col-md-12.text-center
-          %span#browse_picture{style: "border: 1px solid #eee; padding: 6px 25px;border-radius: 5px; display: inline-block"}
-            = image_tag asset_path("blankpicture.png"), style: "display: inline-block;"
-            = f.label :image, "Change Picture", style: "margin-left: 10px; color: white;"
-          %p{id: "progress", style: "color: white; font-size:12px; font-family: 'Oswald-Regular'; margin-top: 5px;"}
-
-        = f.file_field :image, id: "file", style: "display:none"
-
-      .row#stamp_image.hidden
+      .row#browse_picture
         .col-md-3
         .col-md-6.text-center
-          %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
-            = image_tag asset_path("downBtn.png")
+          = image_tag asset_path("upload.png")
 
+      = f.file_field :image, id: "file", style: "display:none"
     %br
-    .row
+    .row#stamp_image.hidden
+      .col-md-3
+      .col-md-6.text-center
+        %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
+          = image_tag asset_path("downBtn.png")
+
+    .row#default_image
       .col-md-3
       .col-md-6.text-center
         %a{href: "/auth/facebook", style: "text-decoration: none;"}
@@ -141,18 +138,18 @@
         function handleData(data) {
           image_uploaded_path = data.image_uploaded_path
           var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
-          $('#sample').attr("src", src );
-          $('#sample').show();
-          setTimeout(function(){
-            $('#progress').text('រួចរាល់!');
+
+          $('#sample').one("load", function() {
             $("#default_image").addClass('hidden');
             $("#stamp_image").removeClass('hidden');
-          }, 3000)
+          }).each(function() {
+            if(this.complete) $(this).load();
+          }).attr("src", src );
         }
 
         function progressHandlingFunction(e){
             if(e.lengthComputable){
-                $('#progress').text('កំពុងដំនើរការ... ');
+              $('#sample').attr("src", "#{asset_path('loading.gif')}" );
             }
         }
 
