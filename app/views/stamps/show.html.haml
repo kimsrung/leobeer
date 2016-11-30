@@ -106,17 +106,17 @@
         });
 
         function handleData(data) {
-          console.log("image uploaded");
-          image_uploaded_path = data.image_uploaded_path
-          console.log(image_uploaded_path);
-          var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
-          console.log("new src");
-          console.log(src)
-          $('#sample').attr("src", src );
-          $('#sample').show();
-          $('#progress').text('រួចរាល់!');
-          $("#default_image").addClass('hidden');
-          $("#stamp_image").removeClass('hidden');
+          setTimeout(function(){
+            console.log("image uploaded");
+            image_uploaded_path = data.image_uploaded_path
+            console.log(image_uploaded_path);
+            var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
+            $('#sample').attr("src", src );
+            $('#sample').show();
+            $('#progress').text('រួចរាល់!');
+            $("#default_image").addClass('hidden');
+            $("#stamp_image").removeClass('hidden');
+          }, 3000)
         }
 
         function progressHandlingFunction(e){
@@ -205,10 +205,7 @@
   #main_content.container
     .row{style: " color: white; font-size: 18px; font-family: 'Koulen'; margin-bottom:30px;"}
       .col-md-12.text-center.text-uppercase
-        %div
-          %span{style: "font-size: 32px; font-family: 'Oswald-Bold'; line-height: 70px;"}  ប្តូររូបភាព
-          %span{style: "font-size: 26px;display: inline-block; font-family: 'Oswald-Regular'; margin-top: 20px;"} PROFILE FACEBOOK
-        %p{style: "font-size:20px; font-family: 'Oswald-Bold'; "} ចែករំលែកក្តីស្រលាញ់ជាមួយក្រវិលកំប៉ុងរបស់អ្នក
+        = image_tag asset_path("text_changeprofile.png")
     .row
       .col-md-12{ style: "margin: 16px 0;"}
         = image_tag asset_path("defaultPicture.jpg"), id: 'sample'
@@ -232,16 +229,7 @@
     %br
     .row{style: "color: white; font-size: 20px; font-family: 'Oswald-light'"}
       .col-md-12.text-center
-        %p.text-uppercase
-          ចុចលើ
-          %span{style: 'font-size: 18px;margin-top: 3px;display: inline-block;'} DOWNLOAD
-          រូបភាព ដើម្បីទាញយករូបភាពខាងលើ
-        %p
-          សម្រាប់ធ្វើជារូបភាព
-          %span{style: 'font-size: 18px;margin-top: 3px;display: inline-block;'}Profile FACEBOOK
-          ថ្មីរបស់លោកអ្នក
-        %p ដើម្បីចែករំលែកក្តីស្រលាញ់ និងគាំទ្រសកម្មភាពនេះ
-        %p ជាមួយស្រាបៀ លីអូ
+        = image_tag asset_path("text_download.png")
 
     %br
     .row
