@@ -106,13 +106,11 @@
         });
 
         function handleData(data) {
+          image_uploaded_path = data.image_uploaded_path;
+          var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
           $('#sample').attr("src", src );
           $('#sample').show();
           setTimeout(function(){
-            console.log("image uploaded");
-            image_uploaded_path = data.image_uploaded_path
-            console.log(image_uploaded_path);
-            var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
             $('#progress').text('រួចរាល់!');
             $("#default_image").addClass('hidden');
             $("#stamp_image").removeClass('hidden');
