@@ -7,6 +7,7 @@
     .row
       .col-md-12{ style: "margin: 16px 0;"}
         = image_tag asset_path("defaultPicture.jpg"), size: '442x447', id: 'sample'
+        = image_tag asset_path("loading.gif"), size: '442x447', id: 'loading', class: 'hidden'
 
     = form_for @stamp do |f|
       .row#browse_picture
@@ -110,7 +111,8 @@
 
             if (!file.type.match(imageType))
                 return;
-            $('#sample').attr("src", "#{asset_path('loading.gif')}" );
+            $('#loading').removeClass('hidden');
+            $('#sample').addClass('hidden');
             var formData = new FormData($('#new_stamp')[0]);
             $.ajax({
                 url: '/stamps/upload',  //Server script to process data
@@ -141,7 +143,9 @@
 
           $('#sample').one("load", function() {
             $("#default_image").addClass('hidden');
+            $('#loading').addClass('hidden');
             $("#stamp_image").removeClass('hidden');
+            $('#sample').removeClass('hidden');
           }).each(function() {
             if(this.complete) $(this).load();
           }).attr("src", src );
