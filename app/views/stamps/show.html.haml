@@ -50,9 +50,14 @@
 
         var image_url = '#{@image_url}';
         if( image_url){
-          $("#sample").attr("src", image_url);
           image_uploaded_path = '#{@image_path}';
-          console.log($('#file'));
+
+          $('#sample').one("load", function() {
+            $("#default_image").addClass('hidden');
+            $("#stamp_image").removeClass('hidden');
+          }).each(function() {
+            if(this.complete) $(this).load();
+          }).attr("src", image_url );
         }
 
 
@@ -206,7 +211,7 @@
     %br
     .row
       .col-md-12{ style: "margin: 16px 0;"}
-        = image_tag asset_path("defaultPicture.jpg"), size: '442x447', id: 'sample'
+        = image_tag asset_path("loading.gif"), size: '442x447', id: 'sample'
 
     = form_for @stamp do |f|
       .row#browse_picture
