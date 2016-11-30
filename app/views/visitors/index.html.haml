@@ -1,9 +1,9 @@
 #sth{style: "background-color: #a4a2a5; background-size: 100%; margin: 0 0 100 0 !important; padding: 0 0 0 0 !important;  overflow: visible;"}
   #main_content.container
-    .row{style: " color: white; font-size: 18px; font-family: 'Koulen'; margin-bottom:30px;"}
-      .col-md-12.text-center.text-uppercase
+    .row
+      .col-md-12
         = image_tag asset_path("text_changeprofile.png")
-
+    %br
     .row
       .col-md-12{ style: "margin: 16px 0;"}
         = image_tag asset_path("defaultPicture.jpg"), size: '442x447', id: 'sample'
@@ -14,7 +14,7 @@
           %span#browse_picture{style: "border: 1px solid #eee; padding: 6px 25px;border-radius: 5px; display: inline-block"}
             = image_tag asset_path("blankpicture.png"), style: "display: inline-block;"
             = f.label :image, "Change Picture", style: "margin-left: 10px; color: white;"
-          %p{id: "progress", style: "color: white; font-size:10px; font-family: 'Kantumruy-Regular'; margin-top: 5px;"}
+          %p{id: "progress", style: "color: white; font-size:12px; font-family: 'Oswald-Regular'; margin-top: 5px;"}
 
         = f.file_field :image, id: "file", style: "display:none"
 
