@@ -12,24 +12,27 @@
     = form_for @stamp do |f|
       .row#browse_picture
         .col-md-3
-        .col-md-6.text-center
-          = image_tag asset_path("upload.png"), id: "upload-btn"
+        .col-md-6.text-center#upload-btn
+          = image_tag asset_path("upload.png")
+          = image_tag asset_path("upload_hover.png")
       = f.file_field :image, id: "file", style: "display:none"
 
     %br
-    .row#stamp_image.hidden
+    .row#download_btn.hidden
       .col-md-3
       .col-md-6.text-center
-        %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
-          = image_tag asset_path("downBtn.png"), id: "download-btn"
+        %a{id:"download-btn", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
+          = image_tag asset_path("downBtn.png")
+          = image_tag asset_path("downBtn_hover.png")
       .col-md-12{style: 'margin-top: 20px'}
         = image_tag asset_path("text_download.png")
 
     .row#default_image
       .col-md-3
-      .col-md-6.text-center
+      .col-md-6.text-center#fb-btn
         %a{href: "/auth/facebook", style: "text-decoration: none;"}
-          = image_tag asset_path("loginFB_btn.png"), id: "fb-btn"
+          = image_tag asset_path("loginFB_btn.png")
+          = image_tag asset_path("loginFB_hover.png")
 
     %br
     .row
@@ -147,7 +150,7 @@
           $('#sample').one("load", function() {
             $("#default_image").addClass('hidden');
             $('#loading').addClass('hidden');
-            $("#stamp_image").removeClass('hidden');
+            $("#download_btn").removeClass('hidden');
             $('#sample').removeClass('hidden');
           }).each(function() {
             if(this.complete) $(this).load();
@@ -230,10 +233,10 @@
           if (image_uploaded_path && image_uploaded_path.length > 0){
             dt = "#{request.protocol}#{request.host}" + "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path;
             console.log(dt);
-            $("#dl").attr('href', dt);
+            $("#download-btn").attr('href', dt);
           }
         };
-        document.getElementById("dl").addEventListener('click', dlCanvas, false);
+        document.getElementById("download-btn").addEventListener('click', dlCanvas, false);
   });
 
 

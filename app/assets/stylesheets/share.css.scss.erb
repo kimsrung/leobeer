@@ -50,17 +50,18 @@ footer {
   background-color: $gray;
 }
 
-#download-btn:hover, #download-btn:focus {
-  content: url("<%= asset_path('downBtn_hover.png')%>");
-}
+#download_btn, #default_image, #browse_picture { height: 59px; }
+#download-btn img:last-child{display:none}
+#download-btn:hover img:first-child{display:none}
+#download-btn:hover img:last-child{display:inline-block}
 
-#upload-btn:hover, #upload-btn:focus {
-  content: url("<%= asset_path('upload_hover.png')%>");
-}
+#upload-btn img:last-child{display:none}
+#upload-btn:hover img:first-child{display:none}
+#upload-btn:hover img:last-child{display:inline-block}
 
-#fb-btn:hover, #fb-btn:focus {
-  content: url("<%= asset_path('loginFB_hover.png')%>");
-}
+#fb-btn img:last-child{display:none}
+#fb-btn:hover img:first-child{display:none}
+#fb-btn:hover img:last-child{display:inline-block}
 
 @media(min-width:768px) {
     #bs-example-navbar-collapse-1{

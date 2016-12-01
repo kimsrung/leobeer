@@ -174,55 +174,120 @@ footer {
   background-color: #a4a2a5;
 }
 
+/* line 53, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#download-btn:hover, #download-btn:focus {
+  background-image: url("/assets/downBtn_hover-1a25cb559f347fb925f1bb01804123f7737b7d20c36015ca42f367bc976f99d0.png");
+}
+
+/* line 56, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#download_btn, #default_image, #browse_picture {
+  height: 59px;
+}
+
+/* line 57, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#download-btn img:last-child {
+  display: none;
+}
+
+/* line 58, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#download-btn:hover img:first-child {
+  display: none;
+}
+
+/* line 59, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#download-btn:hover img:last-child {
+  display: inline-block;
+}
+
+/* line 61, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#upload-btn img:last-child {
+  display: none;
+}
+
+/* line 62, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#upload-btn:hover img:first-child {
+  display: none;
+}
+
+/* line 63, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#upload-btn:hover img:last-child {
+  display: inline-block;
+}
+
+/* line 65, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#fb-btn img:last-child {
+  display: none;
+}
+
+/* line 66, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#fb-btn:hover img:first-child {
+  display: none;
+}
+
+/* line 67, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#fb-btn:hover img:last-child {
+  display: inline-block;
+}
+
+/* line 69, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#upload-btn:hover, #upload-btn:focus {
+  content: url("/assets/upload_hover-aa00dede820a9f84c9ab003982149c2ce3e972c7606b035c74fbe27c610885de.png");
+}
+
+/* line 73, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+#fb-btn:hover, #fb-btn:focus {
+  content: url("/assets/loginFB_hover-208214e988118a8603d2ff8c37afe619dad70183903718baf65e4e5bf34c7b42.png");
+}
+
 @media (min-width: 768px) {
-  /* line 55, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+  /* line 78, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
   #bs-example-navbar-collapse-1 {
     display: table !important;
     margin: 0 auto;
   }
 
-  /* line 60, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+  /* line 83, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
   .navbar-fixed-top, .navbar-brand .navbar-nav {
     padding: 0px 0px;
   }
 
-  /* line 64, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+  /* line 87, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
   .navbar-fixed-top, .navbar-brand, .navbar-header {
     line-height: 85px;
     height: 85px;
     padding-top: 0;
   }
 }
-/* line 71, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+/* line 94, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
 .menu {
   font-family: 'Oswald-Regular';
   background-color: #be1213;
 }
-/* line 72, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+/* line 95, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
 .menu a {
   text-decoration: none;
   color: white;
   font-size: 16px;
 }
 
-/* line 81, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+/* line 104, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
 #main_content {
   margin-top: 85px;
   padding-top: 40px;
 }
-/* line 84, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+/* line 107, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
 #main_content #main_text {
   color: black;
   font-size: 15px;
   font-weight: bold;
 }
 
-/* line 92, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+/* line 115, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
 #browse_picture img:hover {
   cursor: pointer;
 }
 
-/* line 95, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
+/* line 118, /Volumes/data/workplaces/leobeer/app/assets/stylesheets/share.css.scss.erb */
 .grad1 {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+1,020000+50,020101+100&0.77+0,1+100 */
   background: -moz-radial-gradient(center, ellipse cover, rgba(30, 87, 153, 0.77) 0%, rgba(30, 87, 153, 0.77) 1%, rgba(2, 0, 0, 0.88) 50%, #020101 100%);
