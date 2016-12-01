@@ -18,7 +18,7 @@
       = f.file_field :image, id: "file", style: "display:none"
 
     %br
-    .row#download_btn.hidden
+    .row#download-container.hidden
       .col-md-3
       .col-md-6.text-center
         %a{id:"download-btn", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
@@ -150,7 +150,7 @@
           $('#sample').one("load", function() {
             $("#default_image").addClass('hidden');
             $('#loading').addClass('hidden');
-            $("#download_btn").removeClass('hidden');
+            $("#download-container").removeClass('hidden');
             $('#sample').removeClass('hidden');
           }).each(function() {
             if(this.complete) $(this).load();
