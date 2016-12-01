@@ -51,9 +51,9 @@
         var image_url = '#{@image_url}';
         if( image_url){
           image_uploaded_path = '#{@image_path}';
+          $("#download_btn").removeClass('hidden');
           $('#sample').one("load", function() {
             $("#default_image").addClass('hidden');
-            $("#download_btn").removeClass('hidden');
           }).each(function() {
             if(this.complete) $(this).load();
           }).attr("src", image_url );
@@ -197,7 +197,7 @@
 
         function dlCanvas() {
           if (image_uploaded_path && image_uploaded_path.length > 0){
-            dt = "#{request.protocol}#{request.host}" + "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path;
+            dt = "#{request.protocol}#{request.host}" +':3000'+ "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path;
             console.log(dt);
             $("#dl").attr('href', dt);
           }
@@ -220,7 +220,7 @@
       .row#browse_picture
         .col-md-3
         .col-md-6.text-center
-          = image_tag asset_path("upload.png")
+          = image_tag asset_path("upload.png"), id: 'upload-btn'
       = f.file_field :image, id: "file", style: "display:none"
 
     %br
@@ -228,15 +228,15 @@
       .col-md-3
       .col-md-6.text-center
         %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
-          = image_tag asset_path("downBtn.png")
+          = image_tag asset_path("downBtn.png"), id: 'download-btn'
     %br
-    .row{style: "color: white; font-size: 20px; font-family: 'Oswald-light'"}
+    .row
       .col-md-12.text-center
         = image_tag asset_path("text_download.png")
 
     %br
     .row
-      .col-md-12{ style: "margin: 16px 0;"}
+      .col-md-12
         = image_tag asset_path("groupphoto.jpg")
     %br
     #video

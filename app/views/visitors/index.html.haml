@@ -13,7 +13,7 @@
       .row#browse_picture
         .col-md-3
         .col-md-6.text-center
-          = image_tag asset_path("upload.png")
+          = image_tag asset_path("upload.png"), id: "upload-btn"
       = f.file_field :image, id: "file", style: "display:none"
 
     %br
@@ -21,13 +21,16 @@
       .col-md-3
       .col-md-6.text-center
         %a{id:"dl", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
-          = image_tag asset_path("downBtn.png")
+          = image_tag asset_path("downBtn.png"), id: "download-btn"
+      .col-md-12{style: 'margin-top: 20px'}
+        = image_tag asset_path("text_download.png")
 
     .row#default_image
       .col-md-3
       .col-md-6.text-center
         %a{href: "/auth/facebook", style: "text-decoration: none;"}
-          = image_tag asset_path("loginFB_btn.png")
+          = image_tag asset_path("loginFB_btn.png"), id: "fb-btn"
+
     %br
     .row
       .col-md-12{ style: "margin: 16px 0;"}

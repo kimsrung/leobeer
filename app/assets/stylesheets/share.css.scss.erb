@@ -50,6 +50,17 @@ footer {
   background-color: $gray;
 }
 
+#download-btn:hover, #download-btn:focus {
+  content: url("<%= asset_path('downBtn_hover.png')%>");
+}
+
+#upload-btn:hover, #upload-btn:focus {
+  content: url("<%= asset_path('upload_hover.png')%>");
+}
+
+#fb-btn:hover, #fb-btn:focus {
+  content: url("<%= asset_path('loginFB_hover.png')%>");
+}
 
 @media(min-width:768px) {
     #bs-example-navbar-collapse-1{

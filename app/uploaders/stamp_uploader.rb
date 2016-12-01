@@ -67,4 +67,11 @@ class StampUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
 
+  def full_original_filename
+    if original_filename.present?
+      extension = File.extname(original_filename)
+      "Share the love with your rings#{extension}"
+    end
+  end
+
 end
