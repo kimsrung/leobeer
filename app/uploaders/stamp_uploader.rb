@@ -21,7 +21,7 @@ class StampUploader < CarrierWave::Uploader::Base
   end
 
   def stamp
-    manipulate! format: "png" do |source|
+    manipulate! format: "jpeg" do |source|
       source.auto_orient!
       overlay1_path = Rails.public_path.to_s + ActionController::Base.helpers.asset_path("BlueFilterAndLogo.png").to_s
       overlay1 = Magick::Image.read(overlay1_path).first
