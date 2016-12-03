@@ -44,7 +44,7 @@
 
         $("#file").hide();
 
-        $("#browse_picture").click(function(){
+        $("#browse_picture").on('click touchend', function(){
           $("#file").click();
         });
 
@@ -228,7 +228,7 @@
     .row#download_btn.hidden
       .col-md-3
       .col-md-6.text-center
-        %a{id:"download-btn", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
+        %a{id:"download-btn", download: "support_cambodia.png", href: "javascript:;", style: "text-decoration: none;"}
           = image_tag asset_path("downBtn.png")
           = image_tag asset_path("downBtn_hover.png")
     %br

@@ -21,7 +21,7 @@
     .row#download-container.hidden
       .col-md-3
       .col-md-6.text-center
-        %a{id:"download-btn", download: "support_cambodia.png", href: "", style: "text-decoration: none;"}
+        %a{id:"download-btn", download: "support_cambodia.png", href: "javascript:;", style: "text-decoration: none;"}
           = image_tag asset_path("downBtn.png")
           = image_tag asset_path("downBtn_hover.png")
       .col-md-12{style: 'margin-top: 20px'}
@@ -95,7 +95,13 @@
 
         $("#file").hide();
 
-        $("#browse_picture").click(function(){
+        $('#fb-btn a').on('click touchend', function(e) {
+          var el = $(this);
+          var link = el.attr('href');
+          window.location = link;
+        });
+
+        $("#browse_picture").on('click touchend', function(){
           $("#file").click();
         });
 
