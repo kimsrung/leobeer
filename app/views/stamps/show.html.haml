@@ -1,6 +1,7 @@
 :javascript
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
+  var isiDevice = /ipad|iphone|ipod/i.test(navigator.userAgent.toLowerCase());
 
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -42,9 +43,17 @@
   $(document).ready(function(){
         var image_uploaded_path = '';
 
+        if(isiDevice) {
+          $("#browse_picture").on('touchend', function(){
+            $("#file").click();
+          });
+
+          document.getElementById("download-btn").addEventListener('touchend', dlCanvas, false);
+        }
+
         $("#file").hide();
 
-        $("#browse_picture").on('click touchend', function(){
+        $("#browse_picture").click(function(){
           $("#file").click();
         });
 

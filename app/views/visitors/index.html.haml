@@ -52,6 +52,7 @@
 :javascript
   // 2. This code loads the IFrame Player API code asynchronously.
   var tag = document.createElement('script');
+  var isiDevice = /ipad|iphone|ipod/i.test(navigator.userAgent.toLowerCase());
 
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -91,17 +92,24 @@
     player.stopVideo();
   }
   $(document).ready(function(){
-        var image_uploaded_path = '';
-
-        $("#file").hide();
-
-        $('#fb-btn a').on('click touchend', function(e) {
+      if(isiDevice) {
+        $('#fb-btn a').on('touchend', function(e) {
           var el = $(this);
           var link = el.attr('href');
           window.location = link;
         });
 
-        $("#browse_picture").on('click touchend', function(){
+        $("#browse_picture").on('touchend', function(){
+          $("#file").click();
+        });
+
+        document.getElementById("download-btn").addEventListener('touchend', dlCanvas, false);
+      }
+        var image_uploaded_path = '';
+
+        $("#file").hide();
+
+        $("#browse_picture").on('click', function(){
           $("#file").click();
         });
 
