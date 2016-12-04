@@ -100,14 +100,12 @@
         });
 
         $("#browse_picture").on('touchend', function(){
-          $("#file").click();
+          $("#file").trigger('touchstart');
         });
 
         document.getElementById("download-btn").addEventListener('touchend', dlCanvas, false);
       }
         var image_uploaded_path = '';
-
-        $("#file").hide();
 
         $("#browse_picture").on('click', function(){
           $("#file").click();

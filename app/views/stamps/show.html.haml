@@ -45,13 +45,11 @@
 
         if(isiDevice) {
           $("#browse_picture").on('touchend', function(){
-            $("#file").click();
+            $("#file").trigger('touchstart');
           });
 
           document.getElementById("download-btn").addEventListener('touchend', dlCanvas, false);
         }
-
-        $("#file").hide();
 
         $("#browse_picture").click(function(){
           $("#file").click();
@@ -79,19 +77,6 @@
 
             if (!file.type.match(imageType))
                 return;
-
-            // loadImage.parseMetaData(file, function (data) {
-            //   if (data.exif) {
-            //    console.log('orientation');
-            //     orientation = data.exif.get('Orientation');
-            //     console.log(orientation);
-            //   }
-            // })
-
-
-            // var reader = new FileReader();
-            // reader.onload = fileOnload;
-            // reader.readAsDataURL(file);
 
             $('#loading').removeClass('hidden');
             $('#sample').addClass('hidden');
