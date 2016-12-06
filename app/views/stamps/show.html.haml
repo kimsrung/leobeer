@@ -191,7 +191,7 @@
 
         function dlCanvas() {
           if (image_uploaded_path && image_uploaded_path.length > 0){
-            dt = "#{request.protocol}#{request.host}" + "#{download_stamps_path}"+ '?filepath=' + image_uploaded_path;
+            dt = image_uploaded_path;
             console.log(dt);
             $("#download-btn").attr('href', dt);
           }

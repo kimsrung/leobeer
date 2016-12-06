@@ -4,7 +4,7 @@ class StampsController < ApplicationController
     @stamp = Stamp.new(stamp_params)
     @stamp.save
 
-    redirect_to stamp_path(@stamp, thumb_image: @stamp.image.thumb)
+    redirect_to stamp_path(@stamp, thumb_image: @stamp.image)
   end
 
   def show
@@ -17,8 +17,9 @@ class StampsController < ApplicationController
                     RestClient.get("https://graph.facebook.com/#{user.uid}?fields=picture.width(500).height(500)&access_token=#{user.oauth_token}")
                   )["picture"]["data"]["url"]
       @stamp.remote_image_url = fb_url
-      @image_url = "#{request.protocol}#{request.host}"+ @stamp.image.thumb.to_s
-      @image_path = @stamp.image.thumb.to_s
+      @stamp.save!
+      @image_url = @stamp.image.to_s
+      @image_path = @stamp.image.to_s
     end
 
   end
@@ -27,14 +28,12 @@ class StampsController < ApplicationController
     @stamp = Stamp.new(stamp_params)
     @stamp.save
 
-    return render json: {image_uploaded_path: @stamp.image.thumb.to_s}
+    return render json: {image_uploaded_path: @stamp.image.to_s}
   end
 
   def download
     if params[:filepath].present?
-  	 send_file Rails.public_path.to_s + params[:filepath]
-    else
-      send_file Rails.public_path.to_s + ActionController::Base.helpers.asset_path("BlueFilterAndLogo.png").to_s
+  	 send_file params[:filepath]
     end
   end
 
