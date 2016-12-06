@@ -106,7 +106,7 @@
 
         function handleData(data) {
           image_uploaded_path = data.image_uploaded_path;
-          var src = "#{request.protocol}#{request.host}"+ image_uploaded_path;
+          var src = image_uploaded_path;
           $('#sample').one("load", function() {
             $("#default_image").addClass('hidden');
             $('#loading').addClass('hidden');

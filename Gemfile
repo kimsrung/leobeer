@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem "mini_magick"
 gem 'rmagick'
 gem 'carrierwave'
+gem 'fog'
 gem 'social-share-button', '~> 0.1.6'
 
 gem 'omniauth-facebook'

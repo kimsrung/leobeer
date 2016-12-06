@@ -2,6 +2,7 @@ class StampsController < ApplicationController
 
 	def create
     @stamp = Stamp.new(stamp_params)
+    @stamp.save
 
     redirect_to stamp_path(@stamp, thumb_image: @stamp.image.thumb)
   end
@@ -24,6 +25,7 @@ class StampsController < ApplicationController
 
   def upload
     @stamp = Stamp.new(stamp_params)
+    @stamp.save
 
     return render json: {image_uploaded_path: @stamp.image.thumb.to_s}
   end
