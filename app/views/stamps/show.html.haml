@@ -57,7 +57,7 @@
 
         var image_url = '#{@image_url}';
         if( image_url){
-          image_uploaded_path = '#{@image_path}';
+          image_uploaded_path = '#{@image_url}';
           $('#sample').one("load", function() {
             $("#default_image").addClass('hidden');
             $("#download_btn").removeClass('hidden');

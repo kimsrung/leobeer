@@ -19,9 +19,8 @@ class StampsController < ApplicationController
       @stamp.remote_image_url = fb_url
       @stamp.save!
       @image_url = @stamp.image.to_s
-      @image_path = @stamp.image.to_s
     end
-
+    @stamp = Stamp.new
   end
 
   def upload
